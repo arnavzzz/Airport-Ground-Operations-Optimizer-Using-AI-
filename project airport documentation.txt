@@ -1,5 +1,5 @@
 -----------------------------------
-Project explained --> Help by Claude and Grok (Very less)
+Project explained --> Help by Claude (Mostly) and Grok (Very less)
 ----------------------------------
 ----------------------------------
 Problem Statement
@@ -9,14 +9,14 @@ Poor coordination of ground resources
 Ground resources means
 ----> People (Human Resources):
 -> Ramps agents (guiding planes to gates -> airlines)
--> Baggage handlers (unload and load passenger luaggage -> 3rd party)
+-> Baggage handlers (unload and load passenger luggage -> 3rd party)
 -> Passengers Boarding staff (check passenger passport or Boarding pass -> airlines)
 -> Cleaning Crew (clean the airplane- 3rd party)
 -> Caters (load food at airports- 3rd party)
--> fuelers (give fuel to aeroplane- 3rd part)
--> maintainace technician (3rd party)
+-> fuelers (give fuel to airplane- 3rd part)
+-> maintenance technician (3rd party)
 -> pushback drivers (tow place form hanger to runway-> airlines)
-----> Equiqment
+----> Equipment
 -> Baggage Loaders (3rd party)
 -> Passengers stairs (3rd party)
 -> Fuel trucks (3rd party)
@@ -28,15 +28,68 @@ Ground resources means
 -> Gate (Airport)
 -> Parking Bay (Airport)
 -> Baggage Belt (Airport)
--> Gound Power Unit (GPU) (Airport)
+-> Ground Power Unit (GPU) (Airport)
 
 What Poor Coordination means different airport teams, equipment, and facilities are not properly synchronized or managed together, causing delays and inefficiency.
 
--> A plane lands but no gate is available beacuase prevous files do not cleared yet
+Problem Example:
+-> A plane lands but no gate is available because previous files do not cleared yet
 -> The Cleaning crew arrives late, delaying boarding for the next flight
 -> Baggage handlers are waiting idle at one gate while another is understaffed
--> Maintainace team are not informed on time about technicial issues
+-> Maintenance team are not informed on time about technical issues
 -> The fuel trucks is occupied by at another aircraft when its urgently needed
 
--> Manual scheduling wiht no real time updates
--> 
+Why it happens:
+-> Manual scheduling with no real time updates
+-> Team did not share information with each other
+-> No system to track te resources and where they are gonna need next
+-> Sudden changes likes delays or early arrival do not communicate quickly
+
+How AI System fixes this:
+-> Tracks all resources in real life
+-> Automatically reassign resources when plans change
+-> Ensures every team know what to do and when
+-> Prevent bottlenecks before it occurs
+----------------------------------
+Problem Statement
+--------------------------------------
+Unpredicable Delays
+--------------------------------------
+A unexpected disruption that occurs without warning and that causes a domino effect
+
+Causes of Unpredicable Delays:
+-> Weather delays (storms, fog, heavy rain, crosswinds (prevents landing or takeoff))
+-> Aircraft delays (Medical issues or security reasons)
+-> Equipment breaking down
+
+Domino Effect
+One delayed flight -> Gate occupied longer than planned -> Next flight has no gate --> Crew Scheduling disrupted --> Multiple flights delayed
+
+Why current Systems Struggle
+-> They work on fixed schedules
+-> No real time awareness of emerging issues
+-> Human cannot process and react to multiple simultaneous disruption fast enough
+-> Relative approach-problems are dealt with only after they occurs
+
+How AI helps us to solve the problem
+-> Predicable Analytics: Forecasts potentials delays before it occur
+-> Real-Time monitering: Detect disruptions the movement it occurs
+-> Dynamic Rescheduling: Automatically adjusts plans on te fly
+-> Instant Communication: Alerts all the team simultaneously
+-> Pattern Recognition: Learns from the past delayed to prevent future one
+----------------------------------
+Problem Statement
+--------------------------------------
+Inefficient scheduling
+--------------------------------------
+Inefficient scheduling means that the allocation of resources, tasks, time slots in airport is poorly organized Which leads to wasted resources, idle time, overworked staff this caused delays which cost money
+
+How scheduling should work
+-> Gate: Which aircraft uses which gate and when
+-> Staff: Shift for human resources
+-> Equipments: Fuel trucks, tow vehicles, baggage belts, stairs
+-> Flights: Arrival/Departure slots, turnaround windows
+-> Maintenance: Aircraft checks, equipment checking
+
+What makes Scheduling "Inefficient"
+--> Manual Planning
