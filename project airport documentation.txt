@@ -1,5 +1,5 @@
 -----------------------------------
-Project explained --> Help by Claude
+Project explained
 ----------------------------------
 ----------------------------------
 Problem Statement
@@ -561,3 +561,738 @@ Key Features
 --------------------------------------
 Dynamic scheduling
 --------------------------------------
+
+Dynamic Scheduling means the System can automatically adjust, update and reorganize schedules in
+real time as condition change not like static schedules which is rigid or fixed
+
+Static vs Dynamic Scheduling
+❌ STATIC SCHEDULING (Current/Traditional):
+Built once → Fixed for the day → Cannot adapt
+Like a printed timetable — once printed, cannot change
+✅ DYNAMIC SCHEDULING (AI-Powered):
+Built continuously → Updates every second → Adapts instantly
+Like a live GPS — constantly recalculating the best route
+
+What Does Dynamic Scheduling Cover?
+
+Gate Scheduling
+Static                                    -> Dynamic
+Gates assigned weeks in advance           -> Gates assigned and reassigned in real-time
+Flight delayed? Gate sits empty           -> Flight delayed? Gate instantly given to another flight
+Fixed gate regardless of aircraft size    -> Gate matched to aircraft size automatically
+Manual reassignment takes hours           -> Reassignment happens in seconds
+
+Staff Scheduling
+Static                                    -> Dynamic
+Fixed shifts regardless of demand         -> Shifts adjusted based on real-time flight load
+Same number of staff every day            -> More staff during peak, less during quiet periods
+Manual shift changes via phone calls      -> Automatic notifications sent to staff instantly
+Overtime surprises at end of shift        -> Predicted and managed in advance
+
+Equipment Scheduling
+Static                                    -> Dynamic
+Equipment assigned to fixed locations     -> Equipment dispatched where needed most
+Breakdown causes manual scramble          -> Breakdown triggers automatic reallocation
+No tracking of equipment location         -> Real-time GPS tracking of all equipment
+First-come-first-served allocation        -> Priority-based intelligent allocation
+
+Flight Scheduling
+Static                                    -> Dynamic
+Fixed arrival/departure slots             -> Slots adjusted based on traffic and conditions
+Delays handled manually                   -> Delays trigger automatic cascading adjustments
+No consideration of connections           -> Connection passengers factored into scheduling
+Weather disruptions cause chaos           -> Weather changes prompt proactive rescheduling
+
+
+How Does Dynamic Scheduling Work?
+The Continuous Cycle
+
+📡 DATA COLLECTION (Every Second)
+         ↓
+Real-time flight positions
+Weather updates
+Staff availability
+Equipment status
+Passenger loads
+Gate occupancy
+         ↓
+🧠 AI ANALYSIS
+         ↓
+What has changed?
+What is the impact?
+What needs adjusting?
+What is the best solution?
+         ↓
+⚡ INSTANT RESCHEDULING
+         ↓
+Gates reassigned
+Staff redirected
+Equipment reallocated
+Teams notified
+         ↓
+📊 MONITORING
+         ↓
+Is the new schedule working?
+Are there new disruptions?
+         ↓
+🔄 REPEAT CONTINUOUSLY
+
+
+Real-World Dynamic Scheduling Scenarios
+
+-> Scenario 1 — Flight Delay
+❌ Without Dynamic Scheduling:
+Flight A delayed by 45 mins
+Gate 7 sits empty for 45 mins
+5 staff waiting idle at Gate 7
+Equipment parked uselessly
+→ Massive resource waste
+✅ With Dynamic Scheduling:
+Flight A delayed by 45 mins
+→ AI instantly detects delay
+→ Gate 7 reassigned to Flight B (which arrived early)
+→ Staff redirected to Gate 7 for Flight B
+→ Equipment dispatched to Gate 7 immediately
+→ Flight B handled perfectly
+→ When Flight A arrives, Gate 12 (now free) assigned
+→ Zero waste, zero idle time
+
+-> Scenario 2 — Sudden Weather Change
+❌ Without Dynamic Scheduling:
+Storm hits, 10 flights affected
+Managers on phones for hours
+Manual rescheduling of gates, staff, equipment
+Conflicting assignments, confusion, chaos
+→ Hours of delays
+✅ With Dynamic Scheduling:
+Storm detected 2 hours in advance
+→ AI immediately models impact on all 10 flights
+→ Gates reshuffled to cluster affected flights together
+→ Staff schedules extended automatically with notifications
+→ Equipment pre-positioned for expected arrival wave
+→ Passengers notified of changes instantly
+→ Recovery plan executed before storm even hits
+→ Minimal disruption despite severe weather
+
+-> Scenario 3 — Equipment Breakdown
+❌ Without Dynamic Scheduling:
+Fuel truck breaks down at Gate 3
+Supervisor manually calls around for replacement
+Takes 20-30 mins to find and dispatch another truck
+Flight delayed, passengers frustrated
+✅ With Dynamic Scheduling:
+Fuel truck breakdown detected instantly by sensors
+→ AI identifies nearest available fuel truck (Gate 8)
+→ Automatically dispatches it to Gate 3
+→ Entire process takes 90 seconds
+→ Flight barely affected
+→ Broken truck automatically scheduled for maintenance
+
+-> Scenario 4 — Unexpected Early Arrival
+❌ Without Dynamic Scheduling:
+Flight arrives 30 mins early
+Assigned gate still occupied
+Aircraft circles or waits on taxiway
+Fuel burned, passengers annoyed
+Crew duty hours affected
+✅ With Dynamic Scheduling:
+Flight detected arriving 30 mins early (via radar data)
+→ AI scans all gates for earliest available
+→ Gate 15 identified as freeing up in 10 mins
+→ Cleaning crew at Gate 15 alerted to expedite
+→ Ground crew pre-positioned at Gate 15
+→ Aircraft directed to Gate 15 immediately on landing
+→ Smooth arrival, no circling, no waiting
+
+-> Scenario 5 — Peak Hour Surge
+❌ Without Dynamic Scheduling:
+Monday 8AM — 15 flights arriving simultaneously
+Fixed schedule doesn't account for surge
+Staff overwhelmed, equipment insufficient
+Chaos across entire terminal
+✅ With Dynamic Scheduling:
+AI predicts Monday 8AM surge from historical data
+→ Extra staff shifts scheduled from 7:30AM
+→ Additional equipment pre-positioned at key gates
+→ Gates pre-assigned to minimize taxiing distances
+→ Catering and cleaning teams doubled for that window
+→ Peak hour handled smoothly despite high volume
+
+
+Key Capabilities of Dynamic Scheduling
+
+--> Predictive Intelligence
+-> Learns from historical patterns
+-> Anticipates demand hours in advance
+-> Pre-schedules resources before problems arise
+-> Continuously improves accuracy over time
+
+--> Instant Reactivity
+-> Detects changes in milliseconds
+-> Generates new optimal schedule within seconds
+-> Sends notifications to all affected teams simultaneously
+-> No human intervention required for routine adjustments
+
+--> Cascading Adjustments
+-> Understands that one change affects everything else
+-> Automatically calculates all downstream impacts
+-> Adjusts entire schedule holistically, not just one part
+One gate change triggers:
+→ Staff reassignment
+→ Equipment reallocation
+→ Passenger notifications
+→ Catering truck rerouting
+→ Baggage belt adjustment
+All happening simultaneously and automatically
+
+
+The Intelligence Behind Dynamic Scheduling -->
+AI considers ALL of these simultaneously:
+✈️ 200+ flights per day
+👷 1000+ staff members
+🚛 500+ pieces of equipment
+🚪 50+ gates
+📡 Weather data (updated every minute)
+🗺️ Real-time aircraft positions
+⏱️ Historical delay patterns
+👥 Passenger connection data
+🔧 Equipment maintenance status
+📊 Performance targets
+→ Processes all this data continuously
+→ Makes thousands of micro-decisions per hour
+→ Keeps entire operation running optimally
+→ Impossible for any human team to replicate
+
+Before vs After Dynamic Scheduling
+Metric                    -> Before       -> After
+Schedule update speed     -> Hours        -> Seconds
+Resource idle time        -> 30-40%       -> 5-10%
+Delay Recovery Time       -> 2-3 hours    -> 20-30 mins
+Staff overtime            -> Frequently   -> Rare
+Gate Utilization          -> 60-70%       -> 90-95%
+Passenger statisfaction   -> Low          -> High
+
+----------------------------------
+Key Features
+--------------------------------------
+Bottleneck Prediction
+--------------------------------------
+A bottleneck is any point in a process where flow is restricted, causing operation to stop or slow down
+
+❌ Traditional Approach (Reactive):
+Bottleneck OCCURS → Problem noticed → Teams respond → Already too late
+Delay: 30-60 minutes of disruption already happened
+✅ AI Approach (Predictive):
+Data analyzed → Bottleneck PREDICTED → Teams pre-alerted → Problem prevented
+Delay: Zero — issue resolved before it even started
+
+Where Do Bottlenecks Typically Occur?
+
+--> Gate Operation
+Bottleneck Scenario:
+Aircraft scheduled to arrive at Gate 7 at 2:00 PM
+Previous aircraft at Gate 7 running 25 mins late
+→ Gate not available on time
+→ New aircraft must circle or wait on taxiway
+→ Entire departure schedule disrupted
+AI Prediction:
+At 1:15 PM → AI detects previous aircraft still being serviced
+Calculates it won't be ready by 2:00 PM
+→ Automatically reassigns arriving flight to Gate 9
+→ No circling, no waiting, no delay
+
+--> Baggage Handling
+Bottleneck Scenario:
+3 large aircraft all scheduled to land within 20 minutes
+All require baggage offloading simultaneously
+Only enough baggage teams for 2 aircraft
+→ Third aircraft baggage severely delayed
+→ Passengers waiting 90 mins at carousel
+AI Prediction:
+2 hours before → AI detects triple simultaneous landing
+Calculates baggage team shortage
+→ Pre-schedules additional team from off-duty pool
+→ All 3 aircraft handled simultaneously
+→ Passengers collect bags within 20 mins
+
+--> Fueling Operation
+Bottleneck Scenario:
+5 aircraft all requiring refueling between 3-4 PM
+Only 3 fuel trucks available
+→ 2 aircraft delayed waiting for fuel trucks
+→ Departures pushed back by 45 mins
+AI Prediction:
+AI detects fueling demand spike at 3 PM
+→ Pre-positions all available trucks
+→ Schedules fuel truck maintenance for 6 AM instead
+→ All 5 aircraft fueled on time
+→ No departure delays
+
+--> Maintenance Issues
+Bottleneck Scenario:
+Aircraft requires routine check on arrival
+Maintenance team busy with another aircraft
+→ Check delayed by 1 hour
+→ Flight departure delayed
+→ Passengers miss connections
+AI Prediction:
+AI tracks maintenance team workload in real-time
+Detects potential conflict 45 mins in advance
+→ Requests additional technician from standby pool
+→ Check completed on time
+→ Flight departs as scheduled
+
+--> Runway & Taxiway Congestion
+Bottleneck Scenario:
+Multiple aircraft trying to taxi simultaneously
+Single taxiway becomes congested
+→ Chain of aircraft queued up
+→ Departure slots missed
+→ ATC coordination breakdown
+AI Prediction:
+AI monitors all aircraft movements in real-time
+Detects converging taxi paths 10 mins ahead
+→ Staggers departure clearances
+→ Alternate taxiway routes suggested
+→ Smooth flow maintained
+
+--> Passenger Boarding
+Bottleneck Scenario:
+Late gate assignment means passengers not at correct gate
+Boarding starts late
+→ Departure delayed
+→ Crew duty hours impacted
+→ Next rotation disrupted
+AI Prediction:
+AI detects gate assignment delay early
+→ Immediately notifies all passengers via app
+→ Ground staff positioned to guide passengers
+→ Boarding begins on time despite late gate assignment
+
+
+How Does AI Actually Predict Bottlenecks?
+
+--> Historical Pattern Analysis
+AI studies years of past operational data:
+→ Flight X always runs 15 mins late on Mondays
+→ Gate B fueling always takes longer in winter
+→ Baggage carousel 4 always jams during peak hours
+→ Security lane 3 slows down after 8 PM
+
+AI uses these patterns to ANTICIPATE future bottlenecks
+before they even begin to form
+
+--> Real-Time Data Monitoring
+AI continuously monitors live data streams:
+→ Current position of every aircraft
+→ Status of every ground crew team
+→ Location of every piece of equipment
+→ Weather conditions and forecasts
+→ Flight schedule changes and updates
+Any deviation from plan = Immediate bottleneck risk assessment
+
+--> Predictive Algorithms
+AI runs complex calculations continuously:
+→ If Flight A is delayed by X minutes...
+→ And Gate B has Y aircraft scheduled...
+→ And baggage team has Z capacity...
+→ Then bottleneck will occur at [specific point] at [specific time]
+
+This calculation happens thousands of times per minute
+across every process simultaneously
+
+--> Early Warning System
+AI assigns risk levels to potential bottlenecks:
+
+🟢 GREEN - No risk detected, operations normal
+🟡 YELLOW - Minor risk, monitor closely, prepare contingency
+🟠 ORANGE - Moderate risk, activate backup resources now
+🔴 RED - High risk, immediate intervention required
+
+Teams receive alerts based on risk level
+with specific recommended actions
+
+
+The Prediction Process Step by Step
+1 - DATA COLLECTION
+↓
+AI gathers real-time data from all airport systems
+(flights, gates, crews, equipment, weather, passengers)
+
+Step 2 - PATTERN RECOGNITION
+↓
+AI compares current situation against historical patterns
+Identifies similarities to past bottleneck scenarios
+
+Step 3 - RISK CALCULATION
+↓
+AI calculates probability and severity of each potential bottleneck
+Estimates time until bottleneck occurs if unaddressed
+
+Step 4 - ALERT GENERATION
+↓
+AI generates specific alerts for relevant teams
+Includes what, where, when, and recommended action
+
+Step 5 - INTERVENTION
+↓
+Teams take pre-emptive action based on AI guidance
+Resources reallocated, schedules adjusted
+
+Step 6 - VERIFICATION
+↓
+AI monitors whether intervention was successful
+Adjusts recommendations if situation changes
+
+Step 7 - LEARNING
+↓
+AI records outcome and updates its prediction models
+Becomes smarter and more accurate over time
+
+
+Real World Bottleneck Prediction Scenarios
+--> Weather-Triggered Bottleneck
+6:00 AM - AI detects storm forecast for 2:00 PM
+           Calculates 40% of afternoon flights will be delayed
+
+8:00 AM - AI begins pre-emptive rescheduling
+           Gates reassigned, crews reallocated
+           Passengers notified of potential delays
+
+12:00 PM - Storm confirmed approaching
+            AI activates full contingency plan
+            De-icing vehicles pre-positioned
+
+2:00 PM - Storm hits
+           Airport continues operating smoothly
+           Minimal disruption because AI prepared 8 hours earlier
+
+--> Cascade Delay Prevention
+
+Morning flight from London delayed by 45 mins
+AI immediately calculates cascade impact:
+→ 3 connecting flights at risk
+→ 2 gates need reassignment
+→ 4 baggage transfers need priority handling
+→ 12 passengers need connection assistance
+AI automatically:
+→ Reassigns gates before conflict occurs
+→ Alerts baggage teams for priority transfer
+→ Notifies connection passengers with new routing
+→ Holds connecting flights where feasible
+Result: What would have been 6 disrupted flights
+        reduced to just the original delayed flight
+
+
+Before vs After Bottleneck Prediction
+Situation               -> Without AI                        -> AI
+----------------------------------------------------------------------------------------
+When problem detected   -> After it occurs                   -> 30-120 mins before
+Response type           -> Reactive scramble                 -> Calm pre-emptive action
+Impact                  -> Full delay realized               -> Delay prevented or minimized
+Teams affected          -> Multiple teams disrupted          -> Smoothly redirected
+Passenger impact        -> Frustration and delays            -> Seamless experience
+Cost                    -> High — compensation + overtime    -> Low — prevention is cheaper
+
+----------------------------------
+Key Features
+--------------------------------------
+Integrated Communication
+--------------------------------------
+
+❌ Without Integration:
+Each team operates in its own bubble
+Information shared manually, slowly, or not at all
+Everyone working from different information
+→ Confusion, delays, errors
+✅ With Integration:
+All teams connected through one central system
+Information flows instantly to everyone who needs it
+Everyone working from same real-time picture
+→ Coordination, efficiency, smooth operations
+
+Resources --> Airlines --> Air Traffic Control --> Customs --> Fire --> Police --> Ambulance
+
+What Does Poor Communication Look Like Currently?
+
+--> Fragmented Systems
+Current Reality:
+→ Gate agents use System A
+→ Baggage handlers use System B
+→ Fueling crew use walkie-talkies
+→ Maintenance uses paper logs
+→ Airlines use their own separate systems
+→ ATC uses completely different platform
+
+Result:
+Information trapped in silos
+No automatic sharing between systems
+Manual translation and relay required
+Critical updates lost in translation
+
+--> Slow Information Flow
+Scenario:
+Flight delayed by 30 minutes
+
+Current communication chain:
+Airline notifies airport operations (5 mins)
+→ Operations calls gate agent (3 mins)
+→ Gate agent radios baggage team (2 mins)
+→ Baggage team tells fueling crew (4 mins)
+→ Fueling crew informs catering (3 mins)
+→ Catering updates cleaning schedule (5 mins)
+
+Total time: 22 minutes of phone calls and radio messages
+By which time situation may have changed again
+Meanwhile everyone working from outdated information
+
+--> Information Gaps
+Common Scenarios of Missing Communication:
+→ Gate change not communicated to baggage team
+   Bags sent to wrong gate → Massive delay
+
+→ Maintenance issue not shared with airlines
+   Airline boards passengers → Aircraft not ready
+   Passengers deplaned → Angry and frustrated
+
+→ Catering delay not told to gate agent
+   Boarding begins → Flight can't depart anyway
+   Passengers seated and waiting for no reason
+
+→ Weather update not shared with ground crews
+   Teams working outdoors in dangerous conditions
+   Safety risk + operational disruption
+
+--> Communication Device Problems
+Current Tools and Their Limitations:
+→ Walkie Talkies: Limited range, interference, no record kept
+→ Phone Calls: Time consuming, one person at a time
+→ Emails: Too slow for real-time operations
+→ Paper Forms: Easily lost, no instant updates
+→ Whiteboards: Not visible to remote teams
+→ Verbal Instructions: Misheard, forgotten, no accountability
+
+
+How AI Creates Integrated Communication
+
+--> Single Unified Platform
+All teams connected to ONE central system:
+
+           ┌─────────────────────┐
+           │   AI CENTRAL HUB    │
+           │  (Single Source of  │
+           │    Truth for ALL)   │
+           └─────────────────────┘
+                     │
+    ┌────────────────┼────────────────┐
+    │                │                │
+ Gate           Baggage           Fueling
+ Agents         Handlers           Crew
+    │                │                │
+    └────────────────┼────────────────┘
+                     │
+    ┌────────────────┼────────────────┐
+    │                │                │
+Cleaning        Maintenance       Catering
+  Staff          Teams             Teams
+    │                │                │
+    └────────────────┼────────────────┘
+                     │
+    ┌────────────────┼────────────────┐
+    │                │                │
+ Airlines           ATC           Passengers
+
+ --> Instant Automatic Notifications
+Flight delayed by 30 minutes
+
+With Integrated Communication:
+AI detects delay → 0.1 seconds
+ALL relevant teams notified simultaneously → 1 second
+
+Gate Agent: "Flight XY123 delayed 30 mins. Update display boards."
+Baggage Team: "Delay baggage collection by 30 mins. Reallocate to Gate 9."
+Fueling Crew: "Reschedule fueling for XY123 to 3:30 PM."
+Cleaning Staff: "30-min window. Prioritize Aircraft at Gate 5 first."
+Catering Team: "XY123 catering pushed to 3:15 PM."
+Passengers: "Your flight is delayed 30 mins. New departure: 4:00 PM."
+Airline: "Gate 7 available for early use by Flight AB456."
+
+Total time: 1 second vs 22 minutes manually
+Everyone has correct information simultaneously
+No confusion, no conflicting instructions
+
+--> Multi-Channel Communication
+Information delivered through multiple channels simultaneously:
+
+📱 Mobile App Notifications → Ground crew personal devices
+📺 Digital Display Boards → Airport-wide screens updated instantly
+🎧 Smart Headsets → Audio alerts for hands-free workers
+⌚ Smartwatches → Wrist alerts for on-the-move staff
+💻 Operations Dashboard → Central control room overview
+✈️ Airline Systems → Direct integration with airline platforms
+🗼 ATC Interface → Direct connection to air traffic control
+
+--> Role-Based Information Delivery
+Not everyone needs the same information
+AI filters and delivers ONLY relevant updates to each team:
+
+Gate Agent receives:
+→ Flight status updates
+→ Passenger boarding counts
+→ Special assistance requests
+→ Gate change notifications
+
+Baggage Handler receives:
+→ Aircraft arrival times
+→ Baggage volume per flight
+→ Priority transfer requests
+→ Equipment availability
+
+Fueling Crew receives:
+→ Fuel requirements per aircraft
+→ Revised fueling schedules
+→ Equipment status updates
+→ Safety alerts
+
+Passenger receives:
+→ Flight status updates
+→ Gate information
+→ Boarding time alerts
+→ Baggage carousel number
+
+Each team gets exactly what they need
+Nothing more, nothing less
+No information overload
+
+--> Two-Way Communication Flow
+Communication doesn't just flow DOWN from management
+It flows in ALL directions:
+
+Ground Crew → AI Hub:
+"Fueling truck malfunction at Gate 7"
+→ AI immediately reassigns nearest available truck
+→ Notifies all affected teams of slight schedule change
+
+Maintenance Team → AI Hub:
+"Additional 15 mins needed for aircraft check"
+→ AI recalculates all dependent schedules
+→ Notifies gate agent, catering, boarding team
+→ Updates passenger app with revised boarding time
+
+Baggage Handler → AI Hub:
+"Oversized baggage requires special equipment"
+→ AI dispatches appropriate equipment
+→ Alerts relevant teams of slight delay
+→ Adjusts loading schedule accordingly
+
+--> Automatic Cascade Updates
+One change automatically triggers ALL related updates:
+
+Single Event: Aircraft arrives 20 mins early
+
+AI automatically cascades updates:
+→ Gate cleared and prepared immediately
+→ Cleaning team dispatched early
+→ Fueling truck pre-positioned
+→ Baggage team alerted for early offload
+→ Catering delivery time brought forward
+→ Boarding time updated for passengers
+→ Gate display boards updated
+→ Airline operations notified
+→ Connecting flight teams alerted
+→ Ground transport adjusted for early arrival
+
+All of this happens in SECONDS
+Without a single phone call being made
+
+
+----> Communication Scenarios Transformed
+
+--> Scenario 1 — Weather Emergency
+❌ Without Integrated Communication:
+Storm warning received by weather team
+→ Calls operations manager (5 mins)
+→ Operations calls each team individually (20 mins)
+→ Some teams not reached, working outdoors unsafely
+→ Confused responses, no coordination
+→ Dangerous situation + operational chaos
+✅ With Integrated Communication:
+Storm warning received by AI system
+→ All teams alerted simultaneously within 1 second
+→ Specific instructions sent to each team
+→ De-icing vehicles pre-positioned automatically
+→ Outdoor crews directed to safety
+→ Flight schedules adjusted proactively
+→ Passengers notified with updated information
+→ Complete coordination achieved instantly
+
+--> Scenario 2 — Technical Issue Discovered
+
+❌ Without Integrated Communication:
+Maintenance finds technical fault on aircraft
+→ Tells airline by phone (10 mins to reach right person)
+→ Airline decides to delay (5 mins)
+→ Gate agent notified (5 mins)
+→ Passengers already boarding → Must deboard
+→ Baggage already loaded → Must be removed
+→ Catering already delivered → May expire
+→ Massive disruption, angry passengers
+✅ With Integrated Communication:
+Maintenance logs fault in AI system
+→ Airline automatically notified immediately
+→ Boarding automatically halted before it begins
+→ Baggage loading paused instantly
+→ Catering team alerted to hold delivery
+→ Passengers notified before reaching gate
+→ Gate agent briefed with full situation details
+→ Disruption minimized, passengers informed calmly
+
+--> Scenario 3 — Gate Change
+
+❌ Without Integrated Communication:
+Gate change decided by operations
+→ Display boards updated (10 mins)
+→ Some passengers already at wrong gate
+→ Baggage team not notified → Loads wrong gate equipment
+→ Fueling truck goes to old gate
+→ Confusion everywhere → 45-min delay
+✅ With Integrated Communication:
+Gate change entered in AI system
+→ All display boards update instantly
+→ All passenger apps notify immediately
+→ Baggage team redirected automatically
+→ Fueling truck rerouted instantly
+→ Gate agents at both gates informed
+→ Seamless transition with zero confusion
+
+
+The Communication Dashboard
+AI provides central operations dashboard showing:
+
+┌─────────────────────────────────────────────┐
+│           AIRPORT OPERATIONS CENTER          │
+├─────────────────────────────────────────────┤
+│ LIVE FLIGHT STATUS    │ TEAM STATUS          │
+│ ✅ 45 On Time         │ 👷 All teams active  │
+│ ⚠️  3 Minor Delay     │ 🚛 12/15 trucks busy │
+│ 🔴 1 Major Delay      │ ⛽ 3 fuelers free    │
+├─────────────────────────────────────────────┤
+│ ACTIVE ALERTS         │ COMMUNICATIONS       │
+│ 🟡 Gate 7 — 10min     │ 📨 247 sent today    │
+│ 🟠 Baggage — 15min    │ ✅ 246 acknowledged  │
+│ 🟢 All else normal    │ ⚠️  1 unread alert   │
+├─────────────────────────────────────────────┤
+│ WEATHER               │ PASSENGER STATUS     │
+│ 🌤️ Clear now          │ 😊 94% satisfied     │
+│ 🌧️ Rain at 4PM        │ ✈️ 12,400 processed  │
+└─────────────────────────────────────────────┘
+
+----------------------------------
+Key Features
+--------------------------------------
+Performance dashboards
+--------------------------------------
+Frontend:- HTML, CSS, JS
+Backend:- Django
+Database: PostgreSQL
+------------------------------------
