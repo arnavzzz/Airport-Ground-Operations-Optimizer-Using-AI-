@@ -1,120 +1,174 @@
-ai-project/
-├── .venv/                    # Python virtual environment (add to .gitignore)
-├── .git/                    # Git directory (hidden, auto-created)
-├── .env                     # Environment variables
+ai-analytics-platform/
+├── .git/
 ├── .gitignore
-├── .dockerignore
+├── .env
+├── .env.example
 ├── README.md
-├── requirements.txt
-├── requirements-dev.txt
 ├── docker-compose.yml
-├── Dockerfile
-├── manage.py
-├── config/                  # Django project config
-│   ├── __init__.py
-│   ├── settings/
+├── requirements.txt
+├── requirements-ai.txt
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+├── backend/
+│   ├── manage.py
+│   ├── requirements/
+│   │   ├── base.txt
+│   │   ├── development.txt
+│   │   └── production.txt
+│   ├── config/
 │   │   ├── __init__.py
-│   │   ├── base.py
-│   │   ├── development.py
-│   │   ├── production.py
-│   │   └── testing.py
-│   ├── urls.py
-│   ├── asgi.py
-│   └── wsgi.py
-├── apps/
-│   ├── __init__.py
-│   ├── core/               # Core functionality
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── views.py
 │   │   ├── urls.py
-│   │   ├── serializers.py
-│   │   └── tests.py
-│   ├── chat/               # Chat application
+│   │   ├── wsgi.py
+│   │   ├── asgi.py
+│   │   └── settings/
+│   │       ├── __init__.py
+│   │       ├── base.py
+│   │       ├── development.py
+│   │       └── production.py
+│   ├── apps/
 │   │   ├── __init__.py
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── urls.py
-│   │   ├── consumers.py    # WebSocket handlers
-│   │   ├── routing.py      # WebSocket routing
-│   │   └── ai_handlers.py  # AI integration logic
-│   ├── dashboard/          # Analytics dashboard
-│   │   ├── __init__.py
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── urls.py
-│   │   └── utils.py
-│   └── users/              # User management
-│       ├── __init__.py
-│       ├── models.py
-│       ├── views.py
-│       ├── urls.py
-│       └── serializers.py
-├── static/
-│   ├── css/
-│   │   ├── base.css
-│   │   ├── components/
-│   │   │   ├── buttons.css
-│   │   │   ├── cards.css
-│   │   │   └── forms.css
-│   │   └── pages/
-│   │       ├── dashboard.css
-│   │       └── chat.css
-│   ├── js/
-│   │   ├── vendors/        # Third-party JS libraries
-│   │   │   ├── apexcharts.min.js
-│   │   │   ├── chat-engine.js
-│   │   │   └── socket.io.js
-│   │   ├── components/
-│   │   │   ├── charts.js
-│   │   │   ├── chat.js
-│   │   │   └── forms.js
-│   │   ├── utils/
-│   │   │   ├── api.js
-│   │   │   └── helpers.js
-│   │   └── app.js
-│   └── images/
-├── templates/
-│   ├── base.html
-│   ├── partials/
-│   │   ├── header.html
-│   │   ├── footer.html
-│   │   ├── sidebar.html
-│   │   └── scripts.html
+│   │   ├── accounts/
+│   │   │   ├── __init__.py
+│   │   │   ├── admin.py
+│   │   │   ├── apps.py
+│   │   │   ├── models.py
+│   │   │   ├── serializers.py
+│   │   │   ├── urls.py
+│   │   │   ├── views.py
+│   │   │   └── migrations/
+│   │   ├── api/
+│   │   │   ├── __init__.py
+│   │   │   ├── views.py
+│   │   │   ├── serializers.py
+│   │   │   ├── urls.py
+│   │   │   └── migrations/
+│   │   ├── analytics/
+│   │   │   ├── __init__.py
+│   │   │   ├── models.py
+│   │   │   ├── services.py
+│   │   │   ├── utils.py
+│   │   │   └── migrations/
+│   │   └── ai_integration/
+│   │       ├── __init__.py
+│   │       ├── models.py
+│   │       ├── services.py
+│   │       ├── urls.py
+│   │       ├── views.py
+│   │       └── migrations/
 │   ├── core/
+│   │   ├── __init__.py
+│   │   ├── middleware.py
+│   │   └── utils.py
+│   ├── static/
+│   ├── media/
+│   └── templates/
+├── frontend/
+│   ├── public/
 │   │   ├── index.html
-│   │   └── dashboard.html
-│   ├── chat/
-│   │   ├── chat_room.html
-│   │   └── chat_list.html
-│   └── users/
-│       ├── login.html
-│       └── register.html
-├── media/                  # User uploaded files
-├── notebooks/              # Jupyter notebooks for AI experiments
-│   ├── data_exploration.ipynb
-│   ├── model_training.ipynb
-│   └── api_testing.ipynb
-├── ai_models/              # AI models and utilities
+│   │   ├── favicon.ico
+│   │   └── manifest.json
+│   ├── src/
+│   │   ├── index.js
+│   │   ├── App.js
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   ├── assets/
+│   │   │   ├── images/
+│   │   │   ├── fonts/
+│   │   │   └── styles/
+│   │   ├── components/
+│   │   │   ├── common/
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   ├── Sidebar.jsx
+│   │   │   │   ├── Loader.jsx
+│   │   │   │   └── ErrorBoundary.jsx
+│   │   │   ├── charts/
+│   │   │   │   ├── LineChart.jsx
+│   │   │   │   ├── BarChart.jsx
+│   │   │   │   ├── PieChart.jsx
+│   │   │   │   └── ChartContainer.jsx
+│   │   │   ├── dashboard/
+│   │   │   │   ├── Dashboard.jsx
+│   │   │   │   ├── StatsCard.jsx
+│   │   │   │   └── DataTable.jsx
+│   │   │   └── ai/
+│   │   │       ├── ModelSelector.jsx
+│   │   │       ├── PredictionForm.jsx
+│   │   │       └── ResultsDisplay.jsx
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Analytics.jsx
+│   │   │   ├── AIPredictions.jsx
+│   │   │   └── Login.jsx
+│   │   ├── services/
+│   │   │   ├── api.js
+│   │   │   ├── auth.js
+│   │   │   └── aiService.js
+│   │   ├── hooks/
+│   │   │   ├── useAuth.js
+│   │   │   └── useData.js
+│   │   ├── context/
+│   │   │   ├── AuthContext.js
+│   │   │   └── ThemeContext.js
+│   │   ├── utils/
+│   │   │   ├── constants.js
+│   │   │   └── helpers.js
+│   │   └── config/
+│   │       ├── routes.js
+│   │       └── api.config.js
+│   ├── .env
+│   └── .env.example
+├── ai_models/
 │   ├── __init__.py
-│   ├── model_loader.py
-│   ├── text_processor.py
-│   ├── image_processor.py
-│   └── trained_models/     # Store trained models
-├── scripts/                # Utility scripts
-│   ├── setup_env.sh
+│   ├── base/
+│   │   ├── model_loader.py
+│   │   └── preprocessor.py
+│   ├── models/
+│   │   ├── classification/
+│   │   │   ├── model.py
+│   │   │   └── utils.py
+│   │   ├── regression/
+│   │   │   ├── model.py
+│   │   │   └── utils.py
+│   │   └── nlp/
+│   │       ├── model.py
+│   │       └── utils.py
+│   ├── training/
+│   │   ├── trainer.py
+│   │   └── evaluator.py
+│   ├── inference/
+│   │   ├── predictor.py
+│   │   └── batch_processor.py
+│   ├── data/
+│   │   ├── datasets/
+│   │   ├── processed/
+│   │   └── raw/
+│   ├── saved_models/
+│   ├── notebooks/
+│   │   ├── 01_data_exploration.ipynb
+│   │   ├── 02_model_training.ipynb
+│   │   ├── 03_model_evaluation.ipynb
+│   │   └── 04_inference_testing.ipynb
+│   └── config.yaml
+├── docker/
+│   ├── backend/
+│   │   ├── Dockerfile
+│   │   └── entrypoint.sh
+│   ├── frontend/
+│   │   ├── Dockerfile
+│   │   └── nginx.conf
+│   ├── postgres/
+│   │   └── init.sql
+│   └── ai/
+│       └── Dockerfile
+├── scripts/
+│   ├── setup.sh
 │   ├── deploy.sh
-│   └── data_migration.py
-├── tests/
-│   ├── __init__.py
-│   ├── conftest.py
-│   ├── test_models.py
-│   ├── test_views.py
-│   └── test_ai_models.py
-├── docs/                   # Documentation
-│   ├── api.md
-│   ├── setup.md
-│   └── architecture.md
-└── logs/                   # Application logs
+│   └── backup.sh
+└── docs/
+    ├── api/
+    ├── setup/
+    └── architecture/

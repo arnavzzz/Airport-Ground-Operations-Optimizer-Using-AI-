@@ -8,14 +8,13 @@ Poor coordination of ground resources
 --------------------------------------
 Ground resources means
 ----> People (Human Resources):
--> Ramps agents (guiding planes to gates -> airlines)
+-> Ramps agents (guiding planes to gates -> 3rd party)
 -> Baggage handlers (unload and load passenger luggage -> 3rd party)
--> Passengers Boarding staff (check passenger passport or Boarding pass -> airlines)
 -> Cleaning Crew (clean the airplane- 3rd party)
 -> Caters (load food at airports- 3rd party)
 -> fuelers (give fuel to airplane- 3rd part)
 -> maintenance technician (3rd party)
--> pushback drivers (tow place form hanger to runway-> airlines)
+-> pushback drivers (tow place form hanger to runway-> 3rd party)
 ----> Equipment
 -> Baggage Loaders (3rd party)
 -> Passengers stairs (3rd party)
@@ -1292,7 +1291,27 @@ Key Features
 --------------------------------------
 Performance dashboards
 --------------------------------------
-Frontend:- HTML, CSS, JS
+Frontend:- HTML, CSS, JS or React
 Backend:- Django
 Database: PostgreSQL
+Visualization- Apex Charts
+AIML Integration
 ------------------------------------
+Solution Proposed -->
+
+--> Track Human Resources like Ramps agents, Baggage Handlers, Passenger Boarding Pass, Cleaning Crew, Caters, fuelers, maintenance technician and  pushback driver and assign them where they are needed and at right time
+--> Track equipment like Baggage loaders, Passenger stairs, Fuel Trucks, tow tractors, catering van, water truck and waste trucks and them where they needed most and at right time
+--> Assigns Gate, Parking Bay, Baggage Belt, Runway and GPU so resources not get waste
+--> Show how less your resources (Human resources, equipment and Infrastructure) loose by using AI Airport Optimizer and give its score
+--> Learns from past delay to prevent new delay and then adjust the resources and flight plan
+--> Use weather api to shift resources and flight plan
+--> Automatically change the allocation of resources when flight is late
+--> Use past  have to reduce turnaround time
+--> All the operation (human resource and equipment) should be done in parallel
+--> Turnaround Optimization Score
+--> Risk Level for Delay and resource storage
+--> Priority Scheduling
+--> Predictive Equipment Maintenance
+
+
+
