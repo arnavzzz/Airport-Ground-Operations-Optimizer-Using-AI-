@@ -1291,7 +1291,7 @@ Key Features
 --------------------------------------
 Performance dashboards
 --------------------------------------
-Frontend:- HTML, CSS, JS or React
+Frontend:-React
 Backend:- Django
 Database: PostgreSQL
 Visualization- Apex Charts
@@ -1312,6 +1312,218 @@ Solution Proposed -->
 --> Risk Level for Delay and resource storage
 --> Priority Scheduling
 --> Predictive Equipment Maintenance
+--> Real-Time Flight Integration
+--> Give notification of AI decision (Gate change and other features)
+--> Fuel Cost Saving
+--> Delay Penality Cost
+--> Conflict Detection Engine
+--> Crew Fatigue & Shift Compliance
+--> Multi-Agent Collaborative Conflict Resolution
 
 
+----------------------------------------------------------
+----------------------------------------------------------
+How UI of of this project look like-
+----------------------------------------------------------
+Overview (Tab)
+----------------------------------------------------------
+Turnaround optimization Score
+Resource Utilization %
+Fuel Cost Saved & Delay Penalty Saved
+On time Performance %
+Delay Risks Levels
+Total flights (On-time / Delayed / Boarding)
+Arriving flight times
+Delay Risk Level (Low / Medium / High)
 
+AI Optimization Score
+
+Live activity feed (gate change, delay alerts)
+----------------------------------------------------------
+Flight Operation Tab
+----------------------------------------------------------
+Live Flight Board
+Turnaround Timer
+Gate Assignment Map
+Parking Bay Allocation
+Runway Scheduling
+GPU Status
+
+User Input
+Flight Name --> Form Field --> AL-302, 6E-441
+Airline Name --> Dropdown -->
+Aircraft type --> Dropdown
+Origin Airport --> Text --> Airport name
+Destination Airport --> Text --> Airport name
+Scheduled arrival time --> Form field --> Date + time picker
+Scheduled departure time --> Form field --> Date + time picker
+Flight Status --> DropDown --> OnTime, Delayed or cancelled
+Delay Duration --> DropDown --> in minutes
+Passenger Count --> Form Field
+Cargo weight --> From Field --> For fueling
+Priority Flag --> DropDown --> Normal / VIP / Emergency / Cargo
+
+Live Integration --> Automatically filled by API
+Actual arrival
+departure time
+Gate assignment from ATC
+
+Bulk Import
+File Schedule -> csv or excel
+---------------------------------------------------------
+Human Resource Management Tab
+---------------------------------------------------------
+Staff categories:
+Ramp agents --> Count, location, assigned flight
+Baggage handlers --> Belt assignment, shift status
+Cleaning crew --> Aircraft + terminal zones
+Fuelers --> Fuel truck + assigned stand
+Caters --> Catering cart dispatch status
+Boarding Pass Crew --> Gate assignment, passenger load
+Technicians --> Work orders, aircraft type
+PushBack Drivers --> Tractor link, departure slot
+
+Crew Fatigue Monitor (Hours worked, rest compliance)
+Shift Compliance Tracker (Regulatory hour limits)
+Auto-Assignment Engine (AI assigns crew to flight)
+Parallel Operation View (All crew tasks running in parallel)
+
+Input:
+Employee ID -> Form Field
+Staff Name -> Form Field
+Crew Role -> DropDown -> Ramp agents, baggage handlers, cleaning crew, fuelers, caters, Boarding pass crew, Technician, Pushback Drivers
+Shift Time Shart -> When their shift begins
+Shift Time End -> When their shift end
+Availability status --> Toggle / switch	--> Available / On leave / Sick
+MaxHours --> Form field
+
+Bulk Input:
+Shift Roaster Upload
+
+Real-time operator actions
+Mark Crew as unavailable  (toggle )
+-----------------------------------------------------------
+Equipment Management Tab
+-----------------------------------------------------------
+Baggage Loaders / Belt Loaders (Position, assigned flight, status)
+Passenger Stairs (Available / in-use / maintenance)
+Fuel Trucks (Fuel level, location, dispatch log)
+Tow Tractors (Assigned pushback, idle location)
+Catering Vans (Dispatch status, aircraft assigned)
+Water Service Trucks (Fill status, schedule)
+Waste / Lavatory Trucks (Service schedule, aircraft)
+
+AI Feature
+Predictive Maintenance Score (Next failure probability per unit)
+Equipment Conflict Detector (Two flights needing same unit)
+Utilization Heatmap (Over/under-used equipment)
+Auto-Reallocation Log (When equipment was rerouted by AI)
+
+Input:
+Equipment ID --> Field Name --> FT-02, BL-12
+Equipment type --> DropDown --> Baggage Loaders, Passenger Stairs, Fuel Trucks, Tow Tractor, Catering Van, Water Service Truck, Waster Trucks
+Total Unit available --> Form Field
+Capacity --> Form Field
+Current location --> Form Field
+
+Real Time Operation Action
+Mark as for Service --> Toggle
+
+Bulk Import
+File upload --> Equipment inventory CSV
+-----------------------------------------------------------
+Infrastructure Allocation Tab
+---------------------------------------------------------
+Gate allocation map (Which flight, empty, )
+Runway usage (Departure + arrival slots queue)
+Baggage Belt Scheduler (Belt → flight mapping, time slots)
+Parking bay occupancy (occupied/free/reserved)
+GPU allocation (Connected IDLE or Faulty)
+
+Input
+Total Gate --> Form Field
+Parking Bay --> Form Field
+Baggage Belt ID --> Form Field
+Runway ID --> Form Field
+GPU units --> Form Field
+Runway ---> Form Field
+
+Real Time operation action
+Close a gate --> Toggle
+Close a runway --> Toggle
+Close a GPU --> Toggle
+Close a Baggage Belt --> Toggle
+---------------------------------------------------------
+AI Engine
+---------------------------------------------------------
+Turnaround Optimization Score (Per flight + airport average)
+Resource Efficiency Score (How much less waste vs non-AI)
+Delay Prevention Rate (Delays avoided by AI %)
+Predictive Accuracy (Model accuracy on past 30 days)
+
+Conflict Detection Engine (All active + resolved conflicts)
+Multi-Agent Resolution Log (Which agents resolved what conflict)
+Priority Scheduling Rules (Rule editor + AI suggestions)
+Past Delay Learning Feed (What patterns AI learned this week)
+Parallel Operations Status (All concurrent ground tasks)
+Delay Penalty Cost Tracker (Cost avoided by on-time ops)
+
+External API Integration-
+Real-Time Flight API
+Airport Ops System endpoint
+HR Payroll System API
+Maintenance System API
+Fuel Price Feed API
+Notification webhook
+
+Bulky Input
+Historical Data CSV --> File Upload
+Past turnaround logs CSV --> File Upload
+Penality Cost Table (Delay cost per minutes per airlines) CSV --> File Upload
+Fuel consumption baseline CSV --> File Upload
+---------------------------------------------------------
+AI Optimization & Analytics Tab
+--------------------------------------------------------
+Fuel Cost Savings Chart (AI-optimized vs unoptimized ₹/$)
+Delay Penalty Cost Avoidance (Fines avoided by on-time ops)
+Resource Cost Efficiency (Crew + equipment cost per flight)
+Turnaround Time Trend (Average TAT week over week)
+
+
+Top 10 Delay Causes (Last 30/90 days breakdown)
+Delay Pattern Heatmap (Day of week + time of day matrix)
+Resource Utilization History (Peak vs off-peak usage)
+Model Improvement Log (AI learning milestones)
+---------------------------------------------------------
+Weather Tab
+---------------------------------------------------------
+Current Weather Widget (Temp, wind, visibility, precipitation)
+Hourly Forecast (12–24h) (For proactive planning)
+Wind / Crosswind Alert (Runway usability check)
+FOG / Low Visibility Alert (Auto triggers resource reallocation)
+Storm Track Map (If severe weather approaching)
+
+Weather-Triggered Changes Log (What AI changed due to weather)
+Flight Plan Adjustment Feed (Rerouted / delayed / gate-swapped)
+
+Input + API:
+API Key
+Longitude and latitude
+-----------------------------------------------------------
+Alerts & Notifications Tab
+----------------------------------------------------------
+Gate Change Alerts (Flight X moved from G12 → G08)
+Crew Fatigue Warnings (Agent Y approaching shift limit)
+Equipment Reallocation (Fuel truck redirected to Stand 4)
+Delay Risk Escalations (Flight risk upgraded to High)
+Conflict Resolved (Multi-agent system resolved Gate clash)
+Weather Action Taken (Runway 09L closed due to crosswind)
+Predictive Maintenance Alert (Belt loader #7 needs service)
+
+Input->
+Notification Preferences (Toggle which alert types to see)
+Alert Recipient Config (Who gets SMS / email / push)
+Severity Filter (Show only High + Critical)
+-------------------------------------------------------------
+Glassmorphism + Sophisticated Dark Mode + Bento Grid
+-------------------------------------------------------------
