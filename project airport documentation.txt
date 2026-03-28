@@ -1510,20 +1510,5 @@ Input + API:
 API Key
 Longitude and latitude
 -----------------------------------------------------------
-Alerts & Notifications Tab
-----------------------------------------------------------
-Gate Change Alerts (Flight X moved from G12 → G08)
-Crew Fatigue Warnings (Agent Y approaching shift limit)
-Equipment Reallocation (Fuel truck redirected to Stand 4)
-Delay Risk Escalations (Flight risk upgraded to High)
-Conflict Resolved (Multi-agent system resolved Gate clash)
-Weather Action Taken (Runway 09L closed due to crosswind)
-Predictive Maintenance Alert (Belt loader #7 needs service)
-
-Input->
-Notification Preferences (Toggle which alert types to see)
-Alert Recipient Config (Who gets SMS / email / push)
-Severity Filter (Show only High + Critical)
--------------------------------------------------------------
 Glassmorphism + Sophisticated Dark Mode + Bento Grid
 -------------------------------------------------------------
