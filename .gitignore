@@ -1,3 +1,9 @@
 .idea/
 __pycache__/
 env/
+ui-ux_design/
+node_modules/
+vite/
+.env
+.env.*
+dist/
