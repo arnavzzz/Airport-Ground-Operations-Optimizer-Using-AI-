@@ -1,0 +1,210 @@
+/* ── layout.css ── */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Root wrapper ── */
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    position: relative;
+    overflow: hidden;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Ambient blobs */
+.app-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(120,80,255,0.35) 0%, transparent 70%);
+    pointer-events: none;
+    animation: drift1 8s ease-in-out infinite alternate;
+}
+.app-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,200,255,0.25) 0%, transparent 70%);
+    pointer-events: none;
+    animation: drift2 10s ease-in-out infinite alternate;
+}
+
+@keyframes drift1 {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(80px,60px) scale(1.15); }
+}
+@keyframes drift2 {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(-60px,-80px) scale(1.1); }
+}
+
+/* ── Main area ── */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ── Page Header ── */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.header-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 0.01em;
+}
+
+.header-breadcrumb {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.03em;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.header-search:hover {
+    background: rgba(255,255,255,0.11);
+    border-color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.7);
+}
+
+.header-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(167,139,250,0.4);
+}
+
+/* ── Page content area ── */
+.page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.5s ease;
+}
+
+.page-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 48px 56px;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+}
+
+.page-card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #c4b5fd, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+}
+
+/* ── Per-page background tints ── */
+.dashboard     { background: rgba(167,139,250,0.05); }
+.analytics     { background: rgba(96,165,250,0.05); }
+.projects      { background: rgba(52,211,153,0.05); }
+.messages      { background: rgba(251,191,36,0.05); }
+.calendar      { background: rgba(249,115,22,0.05); }
+.team          { background: rgba(236,72,153,0.05); }
+.files         { background: rgba(34,211,238,0.05); }
+.settings      { background: rgba(148,163,184,0.05); }
+.notifications { background: rgba(245,158,11,0.05); }
+
+/* ── Page Footer ── */
+.page-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-shrink: 0;
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: rgba(167,139,250,0.8);
+}

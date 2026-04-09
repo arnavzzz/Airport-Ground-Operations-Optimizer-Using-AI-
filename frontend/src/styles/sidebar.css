@@ -1,0 +1,285 @@
+/* ── sidebar.css ── */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Sidebar shell ── */
+.glass-sidebar {
+    position: relative;
+    z-index: 10;
+    width: 240px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.3),
+    inset 1px 0 0 rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.glass-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    pointer-events: none;
+}
+
+/* ── Header ── */
+.sidebar-header {
+    padding: 28px 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.02em;
+}
+
+.logo-sub {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 1px;
+}
+
+/* ── Nav section ── */
+.nav-section {
+    flex: 1;
+    padding: 16px 12px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.nav-section::-webkit-scrollbar { display: none; }
+
+.nav-group {
+    margin-bottom: 8px;
+}
+
+.nav-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+    padding: 0 8px;
+    margin-bottom: 6px;
+    margin-top: 12px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Nav item ── */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    margin-bottom: 2px;
+    border: 1px solid transparent;
+    color: rgba(255, 255, 255, 0.55);
+    user-select: none;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+    background: rgba(167, 139, 250, 0.18);
+    border-color: rgba(167, 139, 250, 0.35);
+    color: #c4b5fd;
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Left accent bar for active item */
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: linear-gradient(180deg, #a78bfa, #60a5fa);
+    border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.nav-item:hover .nav-icon,
+.nav-item.active .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-item-label {
+    font-size: 14px;
+    font-weight: 400;
+    flex: 1;
+    letter-spacing: 0.01em;
+    transition: font-weight 0.15s;
+}
+
+.nav-item.active .nav-item-label {
+    font-weight: 500;
+}
+
+/* ── Badge ── */
+.badge {
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    box-shadow: 0 2px 8px rgba(167, 139, 250, 0.5);
+    letter-spacing: 0;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Sign In footer ── */
+.sidebar-footer {
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.sign-in-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: border-color 0.25s, box-shadow 0.25s, color 0.25s;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.75);
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.sign-in-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(96,165,250,0.15));
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+}
+
+.sign-in-btn:hover {
+    border-color: rgba(167, 139, 250, 0.4);
+    color: white;
+    box-shadow: 0 4px 20px rgba(167, 139, 250, 0.2);
+}
+
+.sign-in-btn:hover::before { opacity: 1; }
+
+.avatar-ring {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    padding: 1.5px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(30, 20, 60, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #c4b5fd;
+    font-family: 'Syne', sans-serif;
+}
+
+.sign-in-info {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.sign-in-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.2;
+}
+
+.sign-in-action {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 2px;
+}
+
+.sign-in-arrow {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s ease, color 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.sign-in-btn:hover .sign-in-arrow {
+    transform: translateX(3px);
+    color: #a78bfa;
+}
