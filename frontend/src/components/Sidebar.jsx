@@ -1,5 +1,5 @@
-import NavItem from "./NavItem";
-import { navitems } from "../navItems.jsx";
+import NavItem from "./Navitem";
+import { navItems } from "../navItems.jsx";
 
 const groups = ["Main Menu", "Management"];
 

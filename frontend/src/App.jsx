@@ -17,19 +17,21 @@ import "./styles/sidebar.css";
 import "./styles/layout.css";
 
 const pageMap = {
-    dashboard:     <Dashboard />,
-    analytics:     <Analytics />,
-    projects:      <Projects />,
-    messages:      <Messages />,
-    calendar:      <Calendar />,
-    team:          <Team />,
-    files:         <Files />,
-    settings:      <Settings />,
-    notifications: <Notifications />,
+    dashboard:     Dashboard,
+    analytics:     Analytics,
+    projects:      Projects,
+    messages:      Messages,
+    calendar:      Calendar,
+    team:          Team,
+    files:         Files,
+    settings:      Settings,
+    notifications: Notifications,
 };
 
 export default function App() {
     const [active, setActive] = useState("dashboard");
+
+    const ActivatePage = pageMap[active] || Dashboard;
 
     return (
         <div className="app-wrapper">
@@ -39,6 +41,7 @@ export default function App() {
                 <Header active={active} />
 
                 {pageMap[active] ?? <Dashboard />}
+                <ActivatePage/>
 
                 <Footer />
             </main>
