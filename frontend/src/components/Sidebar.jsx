@@ -26,7 +26,7 @@ export default function Sidebar({ active, setActive }) {
                 {groups.map((group) => (
                     <div key={group} className="nav-group">
                         <div className="nav-label">{group}</div>
-                        {navitems
+                        {navItems
                             .filter((item) => item.group === group)
                             .map((item) => (
                                 <NavItem

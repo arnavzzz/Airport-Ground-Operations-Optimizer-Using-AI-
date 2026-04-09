@@ -40,7 +40,7 @@ export default function App() {
             <main className="main-content">
                 <Header active={active} />
 
-                {pageMap[active] ?? <Dashboard />}
+                {/*{pageMap[active] ?? <Dashboard />}*/}
                 <ActivatePage/>
 
                 <Footer />
