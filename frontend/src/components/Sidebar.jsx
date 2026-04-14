@@ -1,7 +1,5 @@
 import NavItem from "./Navitem";
-import { navItems } from "../navItems.jsx";
-
-const groups = ["Main Menu", "Management"];
+import { navItems } from "../navItem.jsx";
 
 export default function Sidebar({ active, setActive }) {
     return (
@@ -21,23 +19,18 @@ export default function Sidebar({ active, setActive }) {
                 </div>
             </div>
 
-            {/* Grouped nav items */}
+            {/* Flat nav — no section labels */}
             <nav className="nav-section">
-                {groups.map((group) => (
-                    <div key={group} className="nav-group">
-                        <div className="nav-label">{group}</div>
-                        {navItems
-                            .filter((item) => item.group === group)
-                            .map((item) => (
-                                <NavItem
-                                    key={item.id}
-                                    item={item}
-                                    active={active}
-                                    setActive={setActive}
-                                />
-                            ))}
-                    </div>
-                ))}
+                <div className="nav-group">
+                    {navItems.map((item) => (
+                        <NavItem
+                            key={item.id}
+                            item={item}
+                            active={active}
+                            setActive={setActive}
+                        />
+                    ))}
+                </div>
             </nav>
 
             {/* Sign in footer */}

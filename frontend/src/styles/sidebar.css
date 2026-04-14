@@ -83,18 +83,6 @@
     margin-bottom: 8px;
 }
 
-.nav-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.28);
-    padding: 0 8px;
-    margin-bottom: 6px;
-    margin-top: 12px;
-    font-family: 'DM Sans', sans-serif;
-}
-
 /* ── Nav item ── */
 .nav-item {
     display: flex;
@@ -103,13 +91,14 @@
     padding: 11px 12px;
     border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     position: relative;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     border: 1px solid transparent;
     color: rgba(255, 255, 255, 0.55);
     user-select: none;
     font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
 }
 
 .nav-item:hover {
@@ -118,25 +107,45 @@
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Active state — colors are injected via inline styles from Navitem.jsx */
 .nav-item.active {
-    background: rgba(167, 139, 250, 0.18);
-    border-color: rgba(167, 139, 250, 0.35);
-    color: #c4b5fd;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
 }
 
-/* Left accent bar for active item */
-.nav-item.active::before {
-    content: '';
+/* ── Dynamic accent bar (replaces ::before pseudo) ── */
+.nav-accent-bar {
     position: absolute;
-    left: -12px;
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 3px;
     height: 60%;
-    background: linear-gradient(180deg, #a78bfa, #60a5fa);
     border-radius: 0 4px 4px 0;
+    pointer-events: none;
+}
+
+/* ── Weather shimmer ── */
+.nav-weather-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(186, 230, 253, 0.12) 40%,
+        rgba(224, 242, 254, 0.18) 50%,
+        rgba(186, 230, 253, 0.12) 60%,
+        transparent 80%
+    );
+    background-size: 200% 100%;
+    animation: weatherShimmer 3s linear infinite;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+@keyframes weatherShimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }
 
 .nav-icon {
@@ -146,7 +155,7 @@
     width: 20px;
     height: 20px;
     flex-shrink: 0;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .nav-item:hover .nav-icon,
@@ -160,6 +169,8 @@
     flex: 1;
     letter-spacing: 0.01em;
     transition: font-weight 0.15s;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-item.active .nav-item-label {
@@ -182,6 +193,9 @@
     box-shadow: 0 2px 8px rgba(167, 139, 250, 0.5);
     letter-spacing: 0;
     font-family: 'DM Sans', sans-serif;
+    transition: background 0.22s;
+    position: relative;
+    z-index: 1;
 }
 
 /* ── Sign In footer ── */
