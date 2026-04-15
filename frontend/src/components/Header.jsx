@@ -16,7 +16,7 @@ export default function Header({ active }) {
             <div className="header-left">
                 <h1 className="header-title">{titleMap[active] ?? "Page"}</h1>
                 <span className="header-breadcrumb">
-          Luminary / {titleMap[active]}
+          GroundFlow Optimizer / {titleMap[active]}
         </span>
             </div>
             <div className="header-right">
@@ -26,7 +26,7 @@ export default function Header({ active }) {
                     </svg>
                     <span>Search…</span>
                 </div>
-                <div className="header-avatar">G</div>
+                <div className="header-avatar">A</div>
             </div>
         </header>
     );

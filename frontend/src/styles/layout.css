@@ -10,7 +10,7 @@
 .app-wrapper {
     display: flex;
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    background: #0F0F1B;
     position: relative;
     overflow: hidden;
     font-family: 'DM Sans', sans-serif;
@@ -61,7 +61,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 32px;
-    background: rgba(255,255,255,0.04);
+    background: #24242E;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     backdrop-filter: blur(12px);
     flex-shrink: 0;
@@ -98,8 +98,8 @@
     align-items: center;
     gap: 8px;
     padding: 8px 14px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 10px;
     font-size: 13px;
     color: rgba(255,255,255,0.4);
@@ -108,7 +108,7 @@
 }
 
 .header-search:hover {
-    background: rgba(255,255,255,0.11);
+    background: rgba(255,255,255,0.9);
     border-color: rgba(255,255,255,0.18);
     color: rgba(255,255,255,0.7);
 }
