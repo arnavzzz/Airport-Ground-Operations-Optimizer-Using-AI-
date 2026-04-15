@@ -1,5 +1,5 @@
 import NavItem from "./Navitem";
-import { navItems } from "../navItem.jsx";
+import { navItems } from "../navItems.jsx";
 
 export default function Sidebar({ active, setActive }) {
     return (
