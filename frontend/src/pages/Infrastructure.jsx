@@ -2,8 +2,7 @@ export function Messages() {
     return (
         <div className="page messages">
             <div className="page-card">
-                <h2>Messages</h2>
-                <p>Your inbox and team conversations.</p>
+                <h2>Infrastructure</h2>
             </div>
         </div>
     );

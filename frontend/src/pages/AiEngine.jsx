@@ -2,8 +2,7 @@ export function Team() {
     return (
         <div className="page team">
             <div className="page-card">
-                <h2>Team</h2>
-                <p>Members, roles and collaboration settings.</p>
+                <h2>AI Engine</h2>
             </div>
         </div>
     );

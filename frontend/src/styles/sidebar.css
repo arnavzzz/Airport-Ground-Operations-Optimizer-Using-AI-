@@ -10,12 +10,9 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 4px 0 40px rgba(0, 0, 0, 0.3),
-    inset 1px 0 0 rgba(255, 255, 255, 0.08);
+    background: #24242E;
+    border-right: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4);
     overflow: hidden;
 }
 
@@ -45,11 +42,11 @@
     width: 36px;
     height: 36px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
+    box-shadow: 0 4px 15px rgba(6, 183, 212, 0.4);
     flex-shrink: 0;
 }
 

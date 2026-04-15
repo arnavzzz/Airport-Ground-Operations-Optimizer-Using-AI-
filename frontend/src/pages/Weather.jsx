@@ -2,8 +2,7 @@ export function Settings() {
     return (
         <div className="page settings">
             <div className="page-card">
-                <h2>Settings</h2>
-                <p>Preferences, integrations and account options.</p>
+                <h2>Weather</h2>
             </div>
         </div>
     );

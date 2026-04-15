@@ -3,14 +3,14 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import { Dashboard }     from "./pages/Dashboard";
-import { Analytics }     from "./pages/Analytics";
-import { Projects }      from "./pages/Projects";
-import { Messages }      from "./pages/Messages";
-import { Calendar }      from "./pages/Calendar";
-import { Team }          from "./pages/Team";
-import { Files }         from "./pages/Files";
-import { Settings }      from "./pages/Settings";
+import { Dashboard }     from "./pages/CommandCenter";
+import { Analytics }     from "./pages/FlightOperation";
+import { Projects }      from "./pages/HumanResources";
+import { Messages }      from "./pages/Infrastructure";
+import { Calendar }      from "./pages/Equipment";
+import { Team }          from "./pages/AiEngine";
+import { Files }         from "./pages/Analytics";
+import { Settings }      from "./pages/Weather";
 import { Notifications } from "./pages/Notifications";
 
 import "./styles/sidebar.css";

@@ -1,5 +1,6 @@
 export const navItems = [
     {
+        id: "dashboard",
         label: "Command Center",
         glass: {
             bg: "rgba(20, 20, 25, 0.65)",
