@@ -235,7 +235,6 @@ export function Notifications() {
             <style>{`
                 @keyframes sevPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.5)} }
                 @keyframes slideIn { from{opacity:0;transform:translateX(-12px)} to{opacity:1;transform:translateX(0)} }
-                ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:transparent} ::-webkit-scrollbar-thumb{background:rgba(167,139,250,0.3);border-radius:2px}
             `}</style>
 
             <div style={{ width: "100%", padding: "28px 32px", display: "flex", flexDirection: "column", gap: 22, fontFamily: "'DM Sans',sans-serif", overflowY: "auto", maxHeight: "100%" }}>
