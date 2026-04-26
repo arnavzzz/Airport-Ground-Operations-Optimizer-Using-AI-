@@ -1,4 +1,4 @@
-export function Files() {
+export function AnalyticsPage() {
     return (
         <div className="page files">
             <div className="page-card">

@@ -1,4 +1,4 @@
-export function Calendar() {
+export function Equipments() {
     return (
         <div className="page calendar">
             <div className="page-card">

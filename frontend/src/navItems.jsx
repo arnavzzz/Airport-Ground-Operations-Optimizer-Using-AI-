@@ -1,6 +1,6 @@
 export const navItems = [
     {
-        id: "dashboard",
+        id: "commandcenter",
         label: "Command Center",
         glass: {
             bg: "rgba(20, 20, 25, 0.65)",
@@ -18,7 +18,7 @@ export const navItems = [
         ),
     },
     {
-        id: "analytics",
+        id: "flightoperations",
         label: "Flight Operation",
         glass: {
             bg: "rgba(109, 40, 217, 0.28)",
@@ -35,7 +35,7 @@ export const navItems = [
         ),
     },
     {
-        id: "projects",
+        id: "humanresources",
         label: "Human Resources",
         glass: {
             bg: "rgba(147, 51, 234, 0.28)",
@@ -54,7 +54,7 @@ export const navItems = [
         ),
     },
     {
-        id: "calendar",
+        id: "equipments",
         label: "Equipment",
         glass: {
             bg: "rgba(185, 28, 28, 0.28)",
@@ -71,7 +71,7 @@ export const navItems = [
         ),
     },
     {
-        id: "messages",
+        id: "infrastructures",
         label: "Infrastructure",
         glass: {
             bg: "rgba(21, 128, 61, 0.28)",
@@ -88,7 +88,7 @@ export const navItems = [
         ),
     },
     {
-        id: "team",
+        id: "aienginepage",
         label: "AI Engine",
         glass: {
             bg: "rgba(29, 78, 216, 0.28)",
@@ -106,7 +106,7 @@ export const navItems = [
         ),
     },
     {
-        id: "files",
+        id: "analyticspage",
         label: "Analytics",
         glass: {
             bg: "rgba(8, 145, 178, 0.28)",
@@ -124,7 +124,7 @@ export const navItems = [
         ),
     },
     {
-        id: "settings",
+        id: "weatherpage",
         label: "Weather",
         glass: {
             bg: "linear-gradient(135deg, rgba(14,116,144,0.4), rgba(56,189,248,0.3))",

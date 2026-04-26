@@ -1,4 +1,4 @@
-export function Analytics() {
+export function FlightOperations() {
     return (
         <div className="page analytics">
             <div className="page-card">

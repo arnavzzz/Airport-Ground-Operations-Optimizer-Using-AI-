@@ -3,28 +3,28 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import { Dashboard }     from "./pages/CommandCenter";
-import { Analytics }     from "./pages/FlightOperation";
-import { Projects }      from "./pages/HumanResources";
-import { Messages }      from "./pages/Infrastructure";
-import { Calendar }      from "./pages/Equipment";
-import { Team }          from "./pages/AiEngine";
-import { Files }         from "./pages/Analytics";
-import { Settings }      from "./pages/Weather";
+import { CommandCenter }     from "./pages/CommandCenter";
+import { FlightOperations }     from "./pages/FlightOperation";
+import { HumanResources }      from "./pages/HumanResources";
+import { Infrastructures }      from "./pages/Infrastructure";
+import { Equipments }      from "./pages/Equipment";
+import { AIEnginePage }          from "./pages/AiEngine";
+import { AnalyticsPage }         from "./pages/Analytics";
+import { WeatherPage }      from "./pages/Weather";
 import { Notifications } from "./pages/Notifications";
 
 import "./styles/sidebar.css";
 import "./styles/layout.css";
 
 const pageMap = {
-    dashboard:     Dashboard,
-    analytics:     Analytics,
-    projects:      Projects,
-    messages:      Messages,
-    calendar:      Calendar,
-    team:          Team,
-    files:         Files,
-    settings:      Settings,
+    commandcenter:     CommandCenter,
+    flightoperations:     FlightOperations,
+    humanresources:      HumanResources,
+    infrastructures:      Infrastructures,
+    equipments:      Equipments,
+    aienginepage:          AIEnginePage,
+    analyticspage:         AnalyticsPage,
+    weatherpage:      WeatherPage,
     notifications: Notifications,
 };
 

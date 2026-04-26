@@ -1,4 +1,4 @@
-export function Dashboard() {
+export function CommandCenter() {
     return (
         <div className="page dashboard">
             <div className="page-card">

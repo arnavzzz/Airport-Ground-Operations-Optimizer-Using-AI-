@@ -1,4 +1,4 @@
-export function Team() {
+export function AIEnginePage() {
     return (
         <div className="page team">
             <div className="page-card">

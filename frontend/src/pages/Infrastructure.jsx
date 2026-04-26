@@ -1,4 +1,4 @@
-export function Messages() {
+export function Infrastructures() {
     return (
         <div className="page messages">
             <div className="page-card">

@@ -1,13 +1,13 @@
 export default function Header({ active }) {
     const titleMap = {
-        dashboard: "Command Center",
-        analytics: "Flight Operation",
-        projects: "Human Resources",
-        messages: "Infrastructure",
-        calendar: "Equipment",
-        team: "AI Engine",
-        files: "Analytics",
-        settings: "Weather",
+        commandcenter: "Command Center",
+        flightoperations: "Flight Operation",
+        humanresources: "Human Resources",
+        infrastructures: "Infrastructure",
+        equipments: "Equipment",
+        aienginepage: "AI Engine",
+        analyticspage: "Analytics",
+        weatherpage: "Weather",
         notifications: "Notifications",
     };
 
