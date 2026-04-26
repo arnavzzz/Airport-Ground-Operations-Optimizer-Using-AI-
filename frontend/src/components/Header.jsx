@@ -1,4 +1,4 @@
-export default function Header({ active }) {
+export default function Header({ active, backendStatus }) {
     const titleMap = {
         commandcenter: "Command Center",
         flightoperations: "Flight Operation",
@@ -20,6 +20,10 @@ export default function Header({ active }) {
         </span>
             </div>
             <div className="header-right">
+                <div className={`backend-status status-${backendStatus?.state || "checking"}`}>
+                    <span className="backend-status-dot" />
+                    <span>{backendStatus?.state === "connected" ? "Backend connected" : backendStatus?.state === "offline" ? "Backend offline" : "Checking backend"}</span>
+                </div>
                 {/* <div className="header-search">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />

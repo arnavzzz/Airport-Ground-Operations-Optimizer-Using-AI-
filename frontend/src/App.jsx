@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { checkBackendConnection } from "./api";
 
 import { CommandCenter }     from "./pages/CommandCenter";
 import { FlightOperations }     from "./pages/FlightOperation";
@@ -30,15 +31,45 @@ const pageMap = {
 
 export default function App() {
     const [active, setActive] = useState("commandcenter");
+    const [backendStatus, setBackendStatus] = useState({
+        state: "checking",
+        message: "Checking backend...",
+    });
 
     const ActivatePage = pageMap[active] || CommandCenter;
+
+    useEffect(() => {
+        let cancelled = false;
+
+        checkBackendConnection()
+            .then((data) => {
+                if (!cancelled) {
+                    setBackendStatus({
+                        state: "connected",
+                        message: data.message || "Backend connected",
+                    });
+                }
+            })
+            .catch(() => {
+                if (!cancelled) {
+                    setBackendStatus({
+                        state: "offline",
+                        message: "Backend offline",
+                    });
+                }
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     return (
         <div className="app-wrapper">
             <Sidebar active={active} setActive={setActive} />
 
             <main className="main-content">
-                <Header active={active} />
+                <Header active={active} backendStatus={backendStatus} />
 
                 <ActivatePage/>
 
