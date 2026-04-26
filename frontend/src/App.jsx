@@ -29,9 +29,9 @@ const pageMap = {
 };
 
 export default function App() {
-    const [active, setActive] = useState("dashboard");
+    const [active, setActive] = useState("commandcenter");
 
-    const ActivatePage = pageMap[active] || Dashboard;
+    const ActivatePage = pageMap[active] || CommandCenter;
 
     return (
         <div className="app-wrapper">
@@ -40,7 +40,6 @@ export default function App() {
             <main className="main-content">
                 <Header active={active} />
 
-                {/*{pageMap[active] ?? <Dashboard />}*/}
                 <ActivatePage/>
 
                 <Footer />
