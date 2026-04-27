@@ -148,16 +148,18 @@ function Heatmap({ data, days, hours }) {
 /* ── Donut ── */
 function Donut({ slices, size = 90 }) {
     const total = slices.reduce((a, s) => a + s.value, 0);
-    let acc = 0;
     const r = 34, cx = size / 2, cy = size / 2;
     const circ = 2 * Math.PI * r;
+    const starts = slices.reduce((sum, slice) => {
+        const next = [...sum.values, sum.total];
+        return { total: sum.total + slice.value, values: next };
+    }, { total: 0, values: [] }).values;
     return (
         <svg width={size} height={size}>
             {slices.map((s, i) => {
                 const pct = s.value / total;
                 const offset = circ - pct * circ;
-                const rotation = (acc / total) * 360 - 90;
-                acc += s.value;
+                const rotation = (starts[i] / total) * 360 - 90;
                 return (
                     <circle key={i} cx={cx} cy={cy} r={r}
                         fill="none" stroke={s.color} strokeWidth={12}

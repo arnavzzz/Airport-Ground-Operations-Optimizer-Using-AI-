@@ -41,6 +41,16 @@ const GATE_STATUS_COLOR = {
   maintenance: C.orange,
 };
 
+const GATE_STATUS_LABEL = {
+  occupied: "Occupied",
+  available: "Available",
+  boarding: "Boarding",
+  cleaning: "Cleaning",
+  maintenance: "Maintenance",
+};
+
+const TERMINALS = ["T1", "T2", "T3", "T4"];
+
 /* ─── Runway data ─────────────────────────────────────── */
 const RUNWAYS = [
   { id:"28L/10R", length:"3900m", surface:"Asphalt", ops:[8,12,15,11,9,14,10,13,16,12,8,11], status:"active",  utilization:78 },
@@ -115,7 +125,7 @@ const TABS = [
 export function Infrastructures() {
   const [tab, setTab]     = useState("gates");
   const [selGate, setSelGate] = useState(null);
-  const [tick, setTick]   = useState(0);
+  const [, setTick]   = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => setTick(x => x+1), 60000);
@@ -123,6 +133,20 @@ export function Infrastructures() {
   }, []);
 
   /* KPI counts */
+  const selectedGate = selGate || GATES.find(g => g.status === "boarding") || GATES[0];
+  const gateTotals = TERMINALS.map(terminal => {
+    const gates = GATES.filter(g => g.terminal === terminal);
+    const busy = gates.filter(g => ["occupied", "boarding"].includes(g.status)).length;
+    return {
+      terminal,
+      gates,
+      busy,
+      available: gates.filter(g => g.status === "available").length,
+      utilization: Math.round((busy / gates.length) * 100),
+    };
+  });
+  const occupiedPct = Math.round((GATES.filter(g => ["occupied", "boarding"].includes(g.status)).length / GATES.length) * 100);
+
   const kpi = {
     gatesAvail: GATES.filter(g=>g.status==="available").length,
     gatesOcc:   GATES.filter(g=>g.status==="occupied"||g.status==="boarding").length,
@@ -182,86 +206,117 @@ export function Infrastructures() {
           <div style={sectionTitle}>Gate Allocation Map</div>
 
           {/* Map canvas */}
-          <div style={glass({padding:0,overflow:"hidden",marginBottom:20})}>
-            <div style={{position:"relative",height:360,background:"linear-gradient(160deg,rgba(10,12,24,.97),rgba(18,28,50,.95))"}}>
-              {/* Grid */}
-              {[...Array(8)].map((_,i)=><div key={"h"+i} style={{position:"absolute",left:0,right:0,top:i*12.5+"%",borderTop:"1px solid rgba(255,255,255,0.03)"}}/>)}
-              {[...Array(10)].map((_,i)=><div key={"v"+i} style={{position:"absolute",top:0,bottom:0,left:i*10+"%",borderLeft:"1px solid rgba(255,255,255,0.03)"}}/>)}
+          <div style={glass({padding:0,overflow:"hidden",marginBottom:20,borderRadius:18})}>
+            <div style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) 280px",minHeight:430,background:"linear-gradient(160deg,rgba(8,13,28,.98),rgba(15,23,42,.96))"}}>
+              <div style={{position:"relative",padding:"28px 28px 72px",overflow:"hidden"}}>
+                <div style={{position:"absolute",inset:0,pointerEvents:"none",background:"linear-gradient(90deg,rgba(148,163,184,.035) 1px,transparent 1px),linear-gradient(0deg,rgba(148,163,184,.03) 1px,transparent 1px)",backgroundSize:"42px 42px",maskImage:"linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,.35))"}}/>
 
-              {/* Terminal labels */}
-              {["T1","T2","T3","T4"].map((t,i)=>(
-                <div key={t} style={{position:"absolute",left:(i*26+12)+"%",top:"4%",transform:"translateX(-50%)",
-                  background:"rgba(34,211,238,0.1)",border:"1px solid rgba(34,211,238,0.25)",
-                  borderRadius:8,padding:"3px 14px",fontSize:11,fontWeight:700,color:C.cyan,letterSpacing:"0.1em"}}>
-                  {t}
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:16,marginBottom:20,position:"relative",zIndex:1}}>
+                  <div>
+                    <div style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,color:"#fff"}}>Terminal Gate Allocation</div>
+                    <div style={{fontSize:12,color:"rgba(255,255,255,.42)",marginTop:3}}>Operational stand map with live gate states and departure assignments</div>
+                  </div>
+                  <div style={{display:"flex",gap:10,flexWrap:"wrap",justifyContent:"flex-end"}}>
+                    <div style={{padding:"8px 12px",borderRadius:10,background:"rgba(96,165,250,.12)",border:"1px solid rgba(96,165,250,.24)"}}>
+                      <div style={{fontSize:10,letterSpacing:".08em",textTransform:"uppercase",color:"rgba(255,255,255,.42)"}}>Utilization</div>
+                      <div style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,color:C.blue}}>{occupiedPct}%</div>
+                    </div>
+                    <div style={{padding:"8px 12px",borderRadius:10,background:"rgba(74,222,128,.1)",border:"1px solid rgba(74,222,128,.22)"}}>
+                      <div style={{fontSize:10,letterSpacing:".08em",textTransform:"uppercase",color:"rgba(255,255,255,.42)"}}>Available</div>
+                      <div style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,color:C.green}}>{kpi.gatesAvail}</div>
+                    </div>
+                  </div>
                 </div>
-              ))}
 
-              {/* Taxiway */}
-              <div style={{position:"absolute",bottom:"8%",left:"4%",right:"4%",height:14,
-                background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.07)",
-                borderRadius:4,display:"flex",alignItems:"center",paddingLeft:12,
-                fontSize:10,letterSpacing:"0.1em",color:"rgba(255,255,255,0.18)",textTransform:"uppercase"}}>
-                ✈  Taxiway Alpha
+                <div style={{display:"grid",gridTemplateColumns:"repeat(4,minmax(132px,1fr))",gap:14,position:"relative",zIndex:1}}>
+                  {gateTotals.map(({terminal,gates,busy,available,utilization})=>(
+                    <div key={terminal} style={{minHeight:250,padding:"14px",borderRadius:16,background:"rgba(255,255,255,.045)",border:"1px solid rgba(255,255,255,.08)"}}>
+                      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}>
+                        <div>
+                          <div style={{fontFamily:"'Syne',sans-serif",fontSize:16,fontWeight:800,color:"#fff"}}>{terminal}</div>
+                          <div style={{fontSize:11,color:"rgba(255,255,255,.38)"}}>{busy}/{gates.length} busy</div>
+                        </div>
+                        <span style={{...badge(utilization>75?C.red:utilization>50?C.yellow:C.green),padding:"2px 8px"}}>{utilization}%</span>
+                      </div>
+                      <div style={{height:5,borderRadius:99,background:"rgba(255,255,255,.08)",overflow:"hidden",marginBottom:14}}>
+                        <div style={{height:"100%",width:`${utilization}%`,background:utilization>75?C.red:utilization>50?C.yellow:C.green,borderRadius:99}}/>
+                      </div>
+                      <div style={{display:"grid",gridTemplateColumns:"1fr",gap:9}}>
+                        {gates.map(g=>{
+                          const color = GATE_STATUS_COLOR[g.status]||C.muted;
+                          const selected = selectedGate?.id===g.id;
+                          return (
+                            <button key={g.id} type="button" onClick={()=>setSelGate(g)} style={{
+                              display:"grid",gridTemplateColumns:"42px minmax(0,1fr)",gap:10,alignItems:"center",width:"100%",
+                              padding:"9px 10px",borderRadius:12,border:`1px solid ${selected?color+"80":"rgba(255,255,255,.08)"}`,
+                              background:selected?color+"18":"rgba(15,23,42,.55)",color:"#fff",cursor:"pointer",textAlign:"left",
+                              boxShadow:selected?`0 0 0 3px ${color}16, 0 12px 28px rgba(0,0,0,.28)`:"none",
+                              transition:"border-color .18s, background .18s, transform .18s, box-shadow .18s",
+                            }}>
+                              <span style={{width:38,height:38,borderRadius:12,display:"flex",alignItems:"center",justifyContent:"center",background:color+"18",border:"1px solid "+color+"66",color,fontFamily:"'Syne',sans-serif",fontSize:12,fontWeight:800}}>{g.id}</span>
+                              <span style={{minWidth:0}}>
+                                <span style={{display:"flex",alignItems:"center",gap:6,marginBottom:3}}>
+                                  <span style={{width:7,height:7,borderRadius:"50%",background:color,boxShadow:`0 0 8px ${color}`}}/>
+                                  <span style={{fontSize:11,fontWeight:800,color,textTransform:"uppercase",letterSpacing:".06em"}}>{GATE_STATUS_LABEL[g.status]}</span>
+                                </span>
+                                <span style={{display:"block",fontSize:12,color:"rgba(255,255,255,.78)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                                  {g.flight ? `${g.flight} - ${g.airline}` : "No aircraft assigned"}
+                                </span>
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <div style={{display:"flex",justifyContent:"space-between",marginTop:12,fontSize:11,color:"rgba(255,255,255,.34)"}}>
+                        <span>{available} free</span>
+                        <span>{gates.filter(g=>g.status==="boarding").length} boarding</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{position:"absolute",left:28,right:28,bottom:24,height:28,borderRadius:9,background:"repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 18px,rgba(255,255,255,.035) 18px 36px)",border:"1px solid rgba(255,255,255,.08)",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 14px",fontSize:10,letterSpacing:".12em",textTransform:"uppercase",color:"rgba(255,255,255,.32)"}}>
+                  <span>Taxiway Alpha</span>
+                  <span>Pushback corridor clear</span>
+                </div>
               </div>
 
-              {/* Gate dots */}
-              {GATES.map(g=>{
-                const color = GATE_STATUS_COLOR[g.status]||C.muted;
-                const sel   = selGate?.id===g.id;
-                return (
-                  <div key={g.id} className="gate-dot"
-                    onClick={()=>setSelGate(sel?null:g)}
-                    style={{
-                      position:"absolute",left:g.x+"%",top:g.y+"%",
-                      transform:"translate(-50%,-50%)",
-                      transition:"transform .2s",cursor:"pointer",zIndex:sel?8:1,
-                    }}>
-                    {/* Pulse ring */}
-                    {(g.status==="boarding"||g.status==="occupied")&&(
-                      <div style={{position:"absolute",inset:-7,borderRadius:"50%",border:"2px solid "+color,opacity:.3,animation:"pulse 2s ease infinite"}}/>
-                    )}
-                    <div style={{
-                      width:sel?46:36,height:sel?46:36,borderRadius:"50%",
-                      background:color+"22",border:"2px solid "+color,
-                      display:"flex",alignItems:"center",justifyContent:"center",
-                      fontSize:10,fontWeight:700,color,
-                      boxShadow:"0 0 14px "+color+"55",
-                      transition:"all .2s",
-                    }}>{g.id}</div>
-
-                    {/* Tooltip */}
-                    {sel && (
-                      <div style={{
-                        position:"absolute",top:50,left:"50%",transform:"translateX(-50%)",
-                        background:"rgba(10,12,24,0.95)",border:"1px solid "+color+"50",
-                        borderRadius:10,padding:"10px 14px",minWidth:160,zIndex:20,
-                        animation:"fadeUp .2s ease",
-                      }}>
-                        <div style={{color,fontWeight:700,fontSize:13,marginBottom:4}}>{g.id} · {g.terminal}</div>
-                        <div style={{...badge(color),marginBottom:8}}>{g.status.toUpperCase()}</div>
-                        {g.flight&&<>
-                          <div style={{fontSize:12,color:"rgba(255,255,255,0.7)"}}>{g.flight}</div>
-                          <div style={{fontSize:11,color:"rgba(255,255,255,0.4)"}}>{g.airline}</div>
-                          <div style={{fontSize:11,color:"rgba(255,255,255,0.4)"}}>Dep: {g.dep}</div>
-                        </>}
-                        {!g.flight&&<div style={{fontSize:12,color:"rgba(255,255,255,0.4)"}}>No aircraft assigned</div>}
-                      </div>
-                    )}
+              <aside style={{borderLeft:"1px solid rgba(255,255,255,.08)",background:"rgba(2,6,23,.32)",padding:22,display:"flex",flexDirection:"column",gap:16}}>
+                <div>
+                  <div style={{fontSize:11,letterSpacing:".1em",textTransform:"uppercase",color:"rgba(255,255,255,.36)",marginBottom:7}}>Selected Gate</div>
+                  <div style={{display:"flex",alignItems:"center",gap:12}}>
+                    <div style={{width:52,height:52,borderRadius:15,display:"flex",alignItems:"center",justifyContent:"center",background:(GATE_STATUS_COLOR[selectedGate.status]||C.muted)+"18",border:"1px solid "+(GATE_STATUS_COLOR[selectedGate.status]||C.muted)+"70",color:GATE_STATUS_COLOR[selectedGate.status]||C.muted,fontFamily:"'Syne',sans-serif",fontSize:16,fontWeight:800}}>{selectedGate.id}</div>
+                    <div>
+                      <div style={{fontFamily:"'Syne',sans-serif",fontSize:18,fontWeight:800,color:"#fff"}}>{selectedGate.terminal}</div>
+                      <span style={badge(GATE_STATUS_COLOR[selectedGate.status]||C.muted)}>{GATE_STATUS_LABEL[selectedGate.status]}</span>
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+                <div style={{display:"grid",gap:10}}>
+                  {[["Flight", selectedGate.flight || "Unassigned"],["Airline", selectedGate.airline || "None"],["Departure", selectedGate.dep || "No slot"],["Stand Type", selectedGate.terminal==="T4" ? "Widebody ready" : "Narrowbody"]].map(([label,value])=>(
+                    <div key={label} style={{padding:"10px 12px",borderRadius:10,background:"rgba(255,255,255,.045)",border:"1px solid rgba(255,255,255,.07)"}}>
+                      <div style={{fontSize:10,textTransform:"uppercase",letterSpacing:".08em",color:"rgba(255,255,255,.34)",marginBottom:3}}>{label}</div>
+                      <div style={{fontSize:13,fontWeight:700,color:"rgba(255,255,255,.86)"}}>{value}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{padding:"12px",borderRadius:12,background:"rgba(34,211,238,.08)",border:"1px solid rgba(34,211,238,.18)"}}>
+                  <div style={{fontSize:11,fontWeight:800,letterSpacing:".08em",textTransform:"uppercase",color:C.cyan,marginBottom:6}}>AI Allocation Note</div>
+                  <div style={{fontSize:12,lineHeight:1.5,color:"rgba(255,255,255,.62)"}}>
+                    {selectedGate.status==="available" ? "Best candidate for short-turn narrowbody arrivals within the next 30 minutes." : selectedGate.status==="maintenance" ? "Keep unavailable for allocation until engineering clears the stand." : selectedGate.status==="cleaning" ? "Hold for next assignment after cleaning completion confirmation." : "Monitor turnaround progress and keep adjacent support equipment pre-positioned."}
+                  </div>
+                </div>
+              </aside>
             </div>
 
-            {/* Legend */}
-            <div style={{padding:"12px 22px",display:"flex",gap:20,borderTop:"1px solid rgba(255,255,255,0.06)",flexWrap:"wrap",alignItems:"center"}}>
+            <div style={{padding:"13px 22px",display:"flex",gap:18,borderTop:"1px solid rgba(255,255,255,0.06)",flexWrap:"wrap",alignItems:"center"}}>
               {Object.entries(GATE_STATUS_COLOR).map(([s,c])=>(
-                <div key={s} style={{display:"flex",alignItems:"center",gap:6}}>
-                  <div style={{width:10,height:10,borderRadius:"50%",background:c}}/>
-                  <span style={{fontSize:11,color:"rgba(255,255,255,0.45)",textTransform:"capitalize"}}>{s}</span>
+                <div key={s} style={{display:"flex",alignItems:"center",gap:7}}>
+                  <div style={{width:10,height:10,borderRadius:"50%",background:c,boxShadow:`0 0 8px ${c}`}}/>
+                  <span style={{fontSize:11,color:"rgba(255,255,255,0.5)"}}>{GATE_STATUS_LABEL[s]}</span>
                 </div>
               ))}
-              <div style={{marginLeft:"auto",fontSize:11,color:"rgba(255,255,255,0.2)"}}>Click a gate for details</div>
+              <div style={{marginLeft:"auto",fontSize:11,color:"rgba(255,255,255,0.28)"}}>Select a gate to inspect allocation details</div>
             </div>
           </div>
 

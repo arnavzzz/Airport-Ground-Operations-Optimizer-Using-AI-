@@ -43,7 +43,7 @@ function genStaff(){
     let id = 1001;
     return ROLES.flatMap(role => {
         const total = rand(8,18);
-        return Array.from({length: total}, (_,i) => {
+        return Array.from({length: total}, () => {
             const fatigue = rand(10,98);
             const status = rand(0,9) < 2 ? (rand(0,1)===0 ? "on_leave" : "sick")
                          : fatigue > 80 ? "critical" : rand(0,3)===0 ? "available" : "active";
@@ -286,7 +286,7 @@ function CrewMonitorInput({ onUpdate }){
             const data = await resp.json();
             const raw = data.content?.find(b=>b.type==="text")?.text || "{}";
             let ai = {};
-            try { ai = JSON.parse(raw.replace(/```json|```/g,"").trim()); } catch{}
+            try { ai = JSON.parse(raw.replace(/```json|```/g,"").trim()); } catch { ai = {}; }
             const entry = {
                 ...form,
                 status: ai.status || (form.sick?"Sick": form.onLeave?"On Leave":"Active"),

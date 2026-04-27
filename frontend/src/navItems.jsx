@@ -144,7 +144,6 @@ export const navItems = [
     {
         id: "notifications",
         label: "Notifications",
-        badge: 12,
         glass: {
             bg: "rgba(29, 78, 216, 0.28)",
             border: "rgba(99, 102, 241, 0.55)",

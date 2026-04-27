@@ -198,7 +198,10 @@ export function Notifications() {
     const [search, setSearch] = useState("");
     const [, tick] = useState(0);
     const liveRef = useRef(live);
-    liveRef.current = live;
+
+    useEffect(() => {
+        liveRef.current = live;
+    }, [live]);
 
     /* Re-render timestamps every 30s */
     useEffect(() => { const t = setInterval(() => tick(n => n + 1), 30000); return () => clearInterval(t); }, []);
