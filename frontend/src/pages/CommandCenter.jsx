@@ -6,11 +6,13 @@ import {
     MetricGrid,
     ModulePage,
     StatusTag,
+} from "../components/ModuleData";
+import {
     formatDateTime,
     formatMinutes,
     formatNumber,
     formatPercent,
-} from "../components/ModuleData";
+} from "../components/moduleFormatters";
 import { useModuleData } from "../hooks/useModuleData";
 
 export function CommandCenter() {

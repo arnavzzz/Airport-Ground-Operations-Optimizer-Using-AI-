@@ -6,10 +6,12 @@ import {
     MetricGrid,
     ModulePage,
     StatusTag,
+} from "../components/ModuleData";
+import {
     formatMinutes,
     formatNumber,
     formatPercent,
-} from "../components/ModuleData";
+} from "../components/moduleFormatters";
 import { useModuleData } from "../hooks/useModuleData";
 
 export function WeatherPage() {

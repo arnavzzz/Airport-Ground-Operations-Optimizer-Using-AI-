@@ -5,9 +5,11 @@ import {
     MetricGrid,
     ModulePage,
     StatusTag,
+} from "../components/ModuleData";
+import {
     formatNumber,
     formatPercent,
-} from "../components/ModuleData";
+} from "../components/moduleFormatters";
 import { useModuleData } from "../hooks/useModuleData";
 
 export function Infrastructures() {

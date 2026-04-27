@@ -6,9 +6,11 @@ import {
     MetricGrid,
     ModulePage,
     StatusTag,
+} from "../components/ModuleData";
+import {
     formatDateTime,
     formatNumber,
-} from "../components/ModuleData";
+} from "../components/moduleFormatters";
 import { useModuleData } from "../hooks/useModuleData";
 
 export function Notifications() {

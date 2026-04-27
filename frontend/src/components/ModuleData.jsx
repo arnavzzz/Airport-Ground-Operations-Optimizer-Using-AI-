@@ -1,138 +1,28 @@
 import "../styles/module-data.css";
-
-const NUMBER_FORMATTERS = new Map();
-
-function toSentenceCase(value) {
-    return String(value)
-        .replace(/_/g, " ")
-        .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
-function parseDateValue(value) {
-    if (!value) {
-        return null;
-    }
-
-    if (value instanceof Date && !Number.isNaN(value.getTime())) {
-        return value;
-    }
-
-    if (typeof value === "string") {
-        const normalized = value.includes("T") ? value : value.replace(" ", "T");
-        const parsed = new Date(normalized);
-        if (!Number.isNaN(parsed.getTime())) {
-            return parsed;
-        }
-    }
-
-    return null;
-}
-
-export function formatNumber(value, digits = 1) {
-    if (value === null || value === undefined || value === "") {
-        return "—";
-    }
-
-    if (typeof value !== "number") {
-        return String(value);
-    }
-
-    if (!NUMBER_FORMATTERS.has(digits)) {
-        NUMBER_FORMATTERS.set(
-            digits,
-            new Intl.NumberFormat("en-IN", {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: digits,
-            }),
-        );
-    }
-
-    return NUMBER_FORMATTERS.get(digits).format(value);
-}
-
-export function formatPercent(value) {
-    if (value === null || value === undefined || value === "") {
-        return "—";
-    }
-    return `${formatNumber(value, 1)}%`;
-}
-
-export function formatMinutes(value) {
-    if (value === null || value === undefined || value === "") {
-        return "—";
-    }
-    return `${formatNumber(value, 1)} min`;
-}
-
-export function formatCurrency(value) {
-    if (value === null || value === undefined || value === "") {
-        return "—";
-    }
-    return `₹${formatNumber(value, 0)}`;
-}
-
-export function formatDateTime(value) {
-    const parsed = parseDateValue(value);
-    if (!parsed) {
-        return value || "—";
-    }
-
-    return parsed.toLocaleString([], {
-        month: "short",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-    });
-}
-
-export function formatMaybeList(value) {
-    if (Array.isArray(value)) {
-        return value.join(", ");
-    }
-    if (typeof value === "boolean") {
-        return value ? "Yes" : "No";
-    }
-    if (value === null || value === undefined || value === "") {
-        return "—";
-    }
-    if (typeof value === "number") {
-        return Number.isInteger(value) ? formatNumber(value, 0) : formatNumber(value, 1);
-    }
-    return String(value);
-}
-
-export function toneFromValue(value) {
-    const normalized = String(value || "").toLowerCase();
-
-    if (/(critical|fault|closed|breach|escalate|danger)/.test(normalized)) {
-        return "critical";
-    }
-    if (/(high|warning|shortage|delayed|unavailable|blocked)/.test(normalized)) {
-        return "high";
-    }
-    if (/(medium|monitor|reserved|review)/.test(normalized)) {
-        return "medium";
-    }
-    if (/(low|ok|open|available|resolved|active|normal|good|serviceable|vfr)/.test(normalized)) {
-        return "low";
-    }
-    return "default";
-}
+import { formatDateTime, formatMaybeList, toSentenceCase, toneFromValue } from "./moduleFormatters";
 
 export function StatusTag({ value, tone }) {
     const resolvedTone = tone || toneFromValue(value);
-    return <span className={`module-tag tag-${resolvedTone}`}>{toSentenceCase(value || "Unknown")}</span>;
+    return (
+        <span className={`module-tag tag-${resolvedTone}`} title={toSentenceCase(value || "Unknown")}>
+            {toSentenceCase(value || "Unknown")}
+        </span>
+    );
 }
 
 export function ModulePage({ summary, generatedAt, loading, error, onRefresh, children }) {
+    const syncLabel = generatedAt ? `Django sync: ${formatDateTime(generatedAt)}` : "Waiting for Django payload";
+
     return (
         <div className="module-page">
             <div className="module-toolbar">
                 <div className="module-toolbar-copy">
-                    {summary && <p className="module-summary">{summary}</p>}
-                    <span className="module-sync">
-                        {generatedAt ? `Django sync: ${formatDateTime(generatedAt)}` : "Waiting for Django payload"}
+                    <span className="module-live-pill">
+                        <span className="module-live-dot" />
+                        Live operations
                     </span>
+                    {summary && <p className="module-summary">{summary}</p>}
+                    <span className="module-sync">{syncLabel}</span>
                 </div>
                 <button className="module-refresh" type="button" onClick={onRefresh} disabled={loading}>
                     {loading ? "Refreshing..." : "Refresh"}
@@ -147,9 +37,9 @@ export function ModulePage({ summary, generatedAt, loading, error, onRefresh, ch
     );
 }
 
-export function Panel({ title, subtitle, children, action }) {
+export function Panel({ title, subtitle, children, action, className = "" }) {
     return (
-        <section className="module-panel">
+        <section className={`module-panel ${className}`.trim()}>
             {(title || subtitle || action) && (
                 <div className="module-panel-head">
                     <div>
@@ -171,9 +61,19 @@ export function MetricGrid({ items = [] }) {
 
     return (
         <div className="module-metric-grid">
-            {items.map((item) => (
-                <div className="module-metric-card" key={item.key || item.label}>
-                    <span className="module-metric-label">{item.label}</span>
+            {items.map((item, index) => (
+                <div
+                    className={[
+                        "module-metric-card",
+                        `metric-${item.tone || "default"}`,
+                        item.featured || index === 0 ? "metric-feature" : "",
+                    ].filter(Boolean).join(" ")}
+                    key={item.key || item.label}
+                >
+                    <span className="module-metric-label">
+                        <span className="module-metric-dot" />
+                        {item.label}
+                    </span>
                     <strong className={`module-metric-value tone-${item.tone || "default"}`}>{item.value}</strong>
                     {item.hint && <span className="module-metric-hint">{item.hint}</span>}
                 </div>
@@ -243,7 +143,7 @@ export function DataTable({
     const visibleRows = rows.slice(0, maxRows);
 
     return (
-        <Panel title={title} subtitle={subtitle}>
+        <Panel title={title} subtitle={subtitle} className="module-panel-table">
             {!visibleRows.length ? (
                 <div className="module-empty">{emptyMessage}</div>
             ) : (

@@ -4,11 +4,13 @@ import {
     DetailList,
     MetricGrid,
     ModulePage,
+} from "../components/ModuleData";
+import {
     formatCurrency,
     formatMinutes,
     formatNumber,
     formatPercent,
-} from "../components/ModuleData";
+} from "../components/moduleFormatters";
 import { useModuleData } from "../hooks/useModuleData";
 
 export function AnalyticsPage() {

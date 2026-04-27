@@ -1,10 +1,13 @@
 :root {
     color-scheme: dark;
-    --bg: #0b1020;
-    --panel: rgba(17, 24, 39, 0.78);
-    --panel-strong: rgba(20, 28, 46, 0.92);
-    --line: rgba(148, 163, 184, 0.18);
-    --line-strong: rgba(226, 232, 240, 0.24);
+    --bg: #08111f;
+    --panel: rgba(255, 255, 255, 0.075);
+    --panel-strong: rgba(255, 255, 255, 0.12);
+    --glass: rgba(255, 255, 255, 0.085);
+    --glass-strong: rgba(255, 255, 255, 0.14);
+    --glass-soft: rgba(255, 255, 255, 0.045);
+    --line: rgba(255, 255, 255, 0.14);
+    --line-strong: rgba(255, 255, 255, 0.28);
     --text: rgba(248, 250, 252, 0.94);
     --muted: rgba(203, 213, 225, 0.62);
     --faint: rgba(148, 163, 184, 0.42);
@@ -13,7 +16,12 @@
     --green: #34d399;
     --amber: #fbbf24;
     --rose: #f87171;
-    --radius: 14px;
+    --violet: #a78bfa;
+    --ink: #06111f;
+    --radius: 16px;
+    --radius-lg: 22px;
+    --shadow-glass: 0 18px 50px rgba(0, 0, 0, 0.24);
+    --inset-glass: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 *, *::before, *::after {
@@ -31,7 +39,10 @@ body,
 
 body {
     background:
-        linear-gradient(135deg, rgba(8, 13, 28, 0.98), rgba(12, 20, 36, 0.98)),
+        linear-gradient(118deg, rgba(34, 211, 238, 0.15), transparent 34%),
+        linear-gradient(244deg, rgba(167, 139, 250, 0.11), transparent 38%),
+        linear-gradient(18deg, rgba(52, 211, 153, 0.1), transparent 36%),
+        linear-gradient(135deg, rgba(7, 17, 32, 0.98), rgba(12, 22, 38, 0.98)),
         repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.035) 0 1px, transparent 1px 72px),
         repeating-linear-gradient(0deg, rgba(148, 163, 184, 0.03) 0 1px, transparent 1px 72px);
     color: var(--text);
@@ -80,8 +91,8 @@ button {
     min-height: 100vh;
     overflow: hidden;
     background:
-        linear-gradient(135deg, rgba(14, 165, 233, 0.08), transparent 28%),
-        linear-gradient(315deg, rgba(52, 211, 153, 0.07), transparent 30%),
+        linear-gradient(135deg, rgba(14, 165, 233, 0.1), transparent 28%),
+        linear-gradient(315deg, rgba(52, 211, 153, 0.08), transparent 30%),
         var(--bg);
 }
 
@@ -95,6 +106,16 @@ button {
         linear-gradient(0deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
     background-size: 72px 72px;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 78%);
+}
+
+.app-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 28px;
+    box-shadow: inset 0 1px 80px rgba(255, 255, 255, 0.035);
 }
 
 .main-content {
@@ -117,12 +138,18 @@ button {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    min-height: 82px;
-    padding: 16px 28px;
-    background: rgba(11, 18, 32, 0.78);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    min-height: 84px;
+    margin: 18px 22px 0;
+    padding: 16px 20px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.08), rgba(52, 211, 153, 0.035)),
+        rgba(9, 18, 32, 0.54);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-glass), var(--inset-glass);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
     flex-shrink: 0;
 }
 
@@ -134,7 +161,7 @@ button {
 }
 
 .header-eyebrow {
-    color: var(--cyan);
+    color: #9eeaf8;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.12em;
@@ -144,14 +171,14 @@ button {
 .header-title {
     color: var(--text);
     font-family: 'Syne', sans-serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: 0;
 }
 
 .header-breadcrumb {
-    color: var(--muted);
+    color: rgba(226, 232, 240, 0.66);
     font-size: 12px;
     line-height: 1.35;
     white-space: nowrap;
@@ -173,8 +200,9 @@ button {
     gap: 1px;
     padding: 7px 11px;
     border: 1px solid var(--line);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.045);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.075);
+    box-shadow: var(--inset-glass);
 }
 
 .header-time span {
@@ -199,7 +227,7 @@ button {
     padding: 0 12px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.075);
     color: var(--muted);
     font-size: 12px;
     font-weight: 700;
@@ -216,7 +244,7 @@ button {
 
 .backend-status.status-connected {
     border-color: rgba(52, 211, 153, 0.4);
-    background: rgba(52, 211, 153, 0.12);
+    background: rgba(52, 211, 153, 0.14);
     color: var(--green);
 }
 
@@ -238,9 +266,9 @@ button {
     justify-content: center;
     width: 38px;
     height: 38px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(52, 211, 153, 0.86));
-    color: #04111f;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(52, 211, 153, 0.86), rgba(167, 139, 250, 0.9));
+    color: var(--ink);
     font-family: 'Syne', sans-serif;
     font-size: 12px;
     font-weight: 800;
@@ -260,11 +288,12 @@ button {
     width: min(420px, 90%);
     padding: 36px 40px;
     text-align: center;
-    background: var(--panel);
+    background: linear-gradient(135deg, var(--glass), var(--glass-soft));
     border: 1px solid var(--line);
-    border-radius: var(--radius);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-glass), var(--inset-glass);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
 }
 
 .page-card h2 {
@@ -299,9 +328,14 @@ button {
     justify-content: space-between;
     gap: 16px;
     min-height: 48px;
-    padding: 10px 28px;
-    background: rgba(11, 18, 32, 0.72);
-    border-top: 1px solid var(--line);
+    margin: 0 22px 18px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--inset-glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     flex-shrink: 0;
 }
 
@@ -346,6 +380,7 @@ button {
 
     .page-header {
         min-height: auto;
+        margin: 14px 14px 0;
         padding: 14px 18px;
     }
 
@@ -379,6 +414,7 @@ button {
         align-items: flex-start;
         flex-direction: column;
         gap: 6px;
+        margin: 0 14px 14px;
         padding: 10px 18px;
     }
 
