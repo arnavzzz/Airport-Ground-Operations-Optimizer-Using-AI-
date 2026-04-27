@@ -146,7 +146,9 @@ const DEMO = {
 };
 
 export function WeatherPage() {
-    const [config, setConfig] = useState(() => { try { return JSON.parse(localStorage.getItem("wx_config") || "{}"); } catch { return {}; } });
+    const [config, setConfig] = useState(() => {
+        try { return JSON.parse(localStorage.getItem("wx_config") || "{}"); } catch { return {}; }
+    });
     const [configDraft, setConfigDraft] = useState({ apiKey: "", lat: "", lon: "" });
     const [saved, setSaved] = useState(false);
     const [weather, setWeather] = useState(null);
@@ -202,7 +204,7 @@ export function WeatherPage() {
 
     const handleSave = () => {
         const newCfg = { apiKey: configDraft.apiKey.trim(), lat: configDraft.lat.trim(), lon: configDraft.lon.trim() };
-        localStorage.setItem("wx_config", JSON.stringify(newCfg));
+        try { localStorage.setItem("wx_config", JSON.stringify(newCfg)); } catch { /* storage unavailable */ }
         setConfig(newCfg); setSaved(true);
         setTimeout(() => setSaved(false), 3000);
         setShowConfig(false);
