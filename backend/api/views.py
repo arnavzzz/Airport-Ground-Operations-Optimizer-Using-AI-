@@ -1,126 +1,112 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
-LIVE_FLIGHTS = [
-    {
-        'id': 'FL-1001',
-        'flightId': 'AI302',
-        'airline': 'Air India',
-        'status': 'On Time',
-        'gate': 'G14',
-        'assignedGate': 'G14',
-        'scheduledTime': '09:20',
-        'actualTime': '09:22',
-        'scheduledDep': '10:35',
-        'actualDep': '10:37',
-        'runway': 'RWY 09L',
-        'bay': 'Bay A1',
-        'turnaround': 58,
-        'turnaroundScore': 91,
-        'isArrival': True,
-        'delay': 2,
-    },
-    {
-        'id': 'FL-1002',
-        'flightId': '6E817',
-        'airline': 'IndiGo',
-        'status': 'Boarding',
-        'gate': 'G08',
-        'assignedGate': 'G08',
-        'scheduledTime': '09:45',
-        'actualTime': '09:45',
-        'scheduledDep': '10:50',
-        'actualDep': '10:55',
-        'runway': 'RWY 27R',
-        'bay': 'Bay B2',
-        'turnaround': 44,
-        'turnaroundScore': 84,
-        'isArrival': False,
-        'delay': 5,
-    },
-    {
-        'id': 'FL-1003',
-        'flightId': 'SG491',
-        'airline': 'SpiceJet',
-        'status': 'Delayed',
-        'gate': 'G21',
-        'assignedGate': 'G19',
-        'scheduledTime': '10:05',
-        'actualTime': '10:38',
-        'scheduledDep': '11:15',
-        'actualDep': '11:49',
-        'runway': 'RWY 09R',
-        'bay': 'Bay C1',
-        'turnaround': 73,
-        'turnaroundScore': 62,
-        'isArrival': True,
-        'delay': 33,
-    },
-    {
-        'id': 'FL-1004',
-        'flightId': 'UK775',
-        'airline': 'Vistara',
-        'status': 'Departed',
-        'gate': 'G03',
-        'assignedGate': 'G03',
-        'scheduledTime': '08:30',
-        'actualTime': '08:31',
-        'scheduledDep': '09:40',
-        'actualDep': '09:42',
-        'runway': 'RWY 27L',
-        'bay': 'Bay D1',
-        'turnaround': 51,
-        'turnaroundScore': 88,
-        'isArrival': False,
-        'delay': 2,
-    },
-    {
-        'id': 'FL-1005',
-        'flightId': 'I5298',
-        'airline': 'AirAsia',
-        'status': 'Arrived',
-        'gate': 'G11',
-        'assignedGate': 'G11',
-        'scheduledTime': '08:55',
-        'actualTime': '08:58',
-        'scheduledDep': '10:10',
-        'actualDep': '10:14',
-        'runway': 'RWY 09L',
-        'bay': 'Bay A3',
-        'turnaround': 47,
-        'turnaroundScore': 79,
-        'isArrival': True,
-        'delay': 3,
-    },
-]
+from .notebook_runtime import NotebookExecutionError, clear_notebook_cache
+from .notebook_services import MODULE_SERVICES
 
 
-@api_view(['GET'])
+def _module_response(module_key, request):
+    if request.query_params.get("refresh") == "1":
+        clear_notebook_cache()
+    try:
+        payload = MODULE_SERVICES[module_key]()
+    except NotebookExecutionError as exc:
+        return Response(
+            {
+                "status": "error",
+                "module": module_key,
+                "message": str(exc),
+            },
+            status=500,
+        )
+
+    return Response(
+        {
+            "status": "ok",
+            "module": module_key,
+            "data": payload,
+        }
+    )
+
+
+@api_view(["GET"])
 def test_connection(request):
-    return Response({
-        'status': 'connected',
-        'message': 'Django is talking to React!',
-    })
+    return Response(
+        {
+            "status": "connected",
+            "message": "Django is talking to React!",
+            "modules": list(MODULE_SERVICES.keys()),
+        }
+    )
 
 
-@api_view(['GET'])
+@api_view(["GET"])
+def api_index(request):
+    return Response(
+        {
+            "status": "ok",
+            "count": len(MODULE_SERVICES),
+            "modules": [
+                {
+                    "slug": slug,
+                    "endpoint": f"/api/{slug}/",
+                }
+                for slug in MODULE_SERVICES
+            ],
+        }
+    )
+
+
+@api_view(["GET"])
+def command_center(request):
+    return _module_response("command-center", request)
+
+
+@api_view(["GET"])
+def flight_operations(request):
+    return _module_response("flight-operations", request)
+
+
+@api_view(["GET"])
+def human_resources(request):
+    return _module_response("human-resources", request)
+
+
+@api_view(["GET"])
+def equipments(request):
+    return _module_response("equipments", request)
+
+
+@api_view(["GET"])
+def infrastructure(request):
+    return _module_response("infrastructure", request)
+
+
+@api_view(["GET", "POST"])
+def ai_engine(request):
+    return _module_response("ai-engine", request)
+
+
+@api_view(["GET"])
+def analytics(request):
+    return _module_response("analytics", request)
+
+
+@api_view(["GET"])
+def weather(request):
+    return _module_response("weather", request)
+
+
+@api_view(["GET"])
+def notifications(request):
+    return _module_response("notifications", request)
+
+
+@api_view(["GET"])
 def live_flights(request):
-    return Response({
-        'status': 'ok',
-        'flights': LIVE_FLIGHTS,
-    })
+    return _module_response("flight-operations", request)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def predict(request):
-    payload = request.data or {}
-    return Response({
-        'status': 'ok',
-        'message': 'Prediction endpoint is ready.',
-        'received': payload,
-        'prediction': {
-            'delay_risk': 'low',
-            'confidence': 0.87,
-        },
-    })
+    return _module_response("ai-engine", request)

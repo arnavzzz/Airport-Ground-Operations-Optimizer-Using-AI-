@@ -1,56 +1,142 @@
-em# Airport Ground Operations Optimizer Using AI
+# Airport Ground Operations Optimizer Using AI
 
-An AI-powered airport operations dashboard for improving ground resource coordination, predicting delays, optimizing schedules, and monitoring airport performance in real time.
+Airport Ground Operations Optimizer is a notebook-driven airport operations dashboard built with React, Django, and Python analytics tooling. It covers nine operational modules and now serves all of them through Django APIs that the React frontend consumes directly.
 
-The project focuses on the main pain points of airport ground operations:
+## Current Status
 
-- Poor coordination between teams, equipment, and airport infrastructure
-- Unpredictable delays caused by weather, aircraft issues, equipment breakdowns, and late updates
-- Inefficient scheduling of gates, staff, equipment, runway usage, and turnaround tasks
+- React is connected to all 9 Django module APIs.
+- Django exposes notebook-backed JSON payloads for each airport module.
+- The frontend renders backend data for command center, flight operations, HR, equipment, infrastructure, AI engine, analytics, weather, and notifications.
+- Notebook execution is cached on the backend and can be refreshed on demand.
 
-## Overview
+## Architecture
 
-Airport ground operations are time-sensitive and highly connected. A delay in one area can quickly affect gates, crew assignments, baggage handling, fueling, aircraft turnaround, and passenger experience.
+The project has three layers:
 
-This system combines a React command-center interface, a Django REST backend, and AI model notebooks to simulate and support smarter airport operations. It is designed to help airport teams track live resources, predict bottlenecks, recommend operational actions, and improve on-time performance.
+1. Notebook logic:
+   `ai_models/notebooks/*.ipynb` contains the operational and AI logic. Each notebook defines a `payload`.
+2. Django API layer:
+   `backend/api/notebook_runtime.py` executes notebook code, converts the result into JSON-safe data, and caches it.
+3. React dashboard:
+   `frontend/src/api.js` and `frontend/src/hooks/useModuleData.js` fetch module payloads from Django and render them in the UI.
 
-## Key Features
+High-level flow:
 
-- Command Center dashboard for high-level airport monitoring
-- Flight operations board with gates, runways, bays, turnaround status, and delay risk
-- Human resources logic for staff demand, fatigue, role capacity, and assignment planning
-- Equipment tracking for GPUs, tugs, fuel trucks, loaders, stairs, and service vehicles
-- Infrastructure planning for gates, parking bays, baggage belts, GPUs, and runway capacity
-- AI Engine notebook for delay prediction, optimization scoring, conflict detection, and recommendations
-- Analytics notebook for delay trends, cost savings, fuel savings, turnaround history, and model performance
-- Weather intelligence for visibility, wind, crosswind, runway suitability, and weather impact forecasting
-- Notification logic for live alerts, severity scoring, deduplication, routing, and SLA escalation
-- Backend-ready payload generation from notebooks for future API integration
+```text
+Jupyter notebook payload
+        ->
+backend/api/notebook_services/
+        ->
+backend/api/views.py
+        ->
+/api/<module>/
+        ->
+frontend/src/api.js
+        ->
+frontend/src/pages/*
+```
+
+## Integrated Modules
+
+| Module | Notebook | Django endpoint | Frontend page |
+| --- | --- | --- | --- |
+| Command Center | `01_Command_Center.ipynb` | `/api/command-center/` | `CommandCenter.jsx` |
+| Flight Operations | `02_Flight_Operation.ipynb` | `/api/flight-operations/` | `FlightOperation.jsx` |
+| Human Resources | `03_Human_Resources.ipynb` | `/api/human-resources/` | `HumanResources.jsx` |
+| Equipments | `04_Equipments.ipynb` | `/api/equipments/` | `Equipment.jsx` |
+| Infrastructure | `05_Infrastructure.ipynb` | `/api/infrastructure/` | `Infrastructure.jsx` |
+| AI Engine | `06_AI_Engine.ipynb` | `/api/ai-engine/` | `AiEngine.jsx` |
+| Analytics | `07_Analytics.ipynb` | `/api/analytics/` | `Analytics.jsx` |
+| Weather | `08_Weather.ipynb` | `/api/weather/` | `Weather.jsx` |
+| Notifications | `09_Notification.ipynb` | `/api/notifications/` | `Notifications.jsx` |
+
+## Backend API
+
+Main endpoints:
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/` | API index with available module routes |
+| `GET` | `/api/test/` | Backend connectivity check |
+| `GET` | `/api/command-center/` | Command center payload |
+| `GET` | `/api/flight-operations/` | Flight operations payload |
+| `GET` | `/api/human-resources/` | Human resources payload |
+| `GET` | `/api/equipments/` | Equipment payload |
+| `GET` | `/api/infrastructure/` | Infrastructure payload |
+| `GET`, `POST` | `/api/ai-engine/` | AI engine payload |
+| `GET` | `/api/analytics/` | Analytics payload |
+| `GET` | `/api/weather/` | Weather payload |
+| `GET` | `/api/notifications/` | Notifications payload |
+
+Compatibility endpoints:
+
+| Method | Endpoint | Notes |
+| --- | --- | --- |
+| `GET` | `/api/flights/` | Alias for flight operations payload |
+| `POST` | `/api/predict/` | Alias for AI engine payload |
+
+Cache refresh:
+
+- Add `?refresh=1` to a module endpoint to clear the notebook cache before returning data.
+- Example: `/api/command-center/?refresh=1`
+
+Typical response shape:
+
+```json
+{
+  "status": "ok",
+  "module": "command-center",
+  "data": {
+    "generated_at": "2026-04-27T09:30:00",
+    "kpis": {},
+    "top_risks": []
+  }
+}
+```
+
+## Frontend Data Wiring
+
+The React side now uses shared module fetch helpers instead of local mock feeds for the nine notebook-backed pages.
+
+Important files:
+
+- `frontend/src/api.js`
+- `frontend/src/hooks/useModuleData.js`
+- `frontend/src/components/ModuleData.jsx`
+- `frontend/src/pages/CommandCenter.jsx`
+- `frontend/src/pages/FlightOperation.jsx`
+- `frontend/src/pages/HumanResources.jsx`
+- `frontend/src/pages/Equipment.jsx`
+- `frontend/src/pages/Infrastructure.jsx`
+- `frontend/src/pages/AiEngine.jsx`
+- `frontend/src/pages/Analytics.jsx`
+- `frontend/src/pages/Weather.jsx`
+- `frontend/src/pages/Notifications.jsx`
 
 ## Tech Stack
 
 ### Frontend
 
-- React
+- React 19
 - Vite
 - JavaScript
-- CSS modules and custom styles
+- Custom CSS
 
 ### Backend
 
-- Django
+- Django 6
 - Django REST Framework
 - django-cors-headers
 - SQLite
 
-### AI and Analytics
+### Data and AI
 
 - Jupyter notebooks
 - Python
 - pandas
 - NumPy
 - matplotlib
-- scikit-learn in AI Engine logic
+- scikit-learn
 
 ## Project Structure
 
@@ -69,80 +155,55 @@ Project/
 |       +-- 09_Notification.ipynb
 +-- backend/
 |   +-- api/
+|   |   +-- notebook_runtime.py
+|   |   +-- notebook_services/
 |   |   +-- urls.py
 |   |   +-- views.py
 |   +-- backend/
 |   |   +-- settings.py
 |   |   +-- urls.py
-|   +-- db.sqlite3
 |   +-- manage.py
 +-- frontend/
 |   +-- src/
 |   |   +-- components/
+|   |   +-- hooks/
 |   |   +-- pages/
 |   |   +-- styles/
 |   |   +-- api.js
 |   |   +-- App.jsx
 |   +-- package.json
-+-- ui-ux_design/
-+-- project airport documentation.txt
++-- requirements.txt
 +-- README.md
 ```
 
-## Application Modules
+## Local Setup
 
-| Module | Purpose |
-| --- | --- |
-| Command Center | Overall airport operations monitoring and decision support |
-| Flight Operation | Live flights, gates, runways, bays, turnaround, and delay risk |
-| Human Resources | Staff capacity, role demand, assignment planning, and fatigue checks |
-| Equipments | Equipment availability, utilization, maintenance risk, and allocation |
-| Infrastructure | Gate, bay, belt, GPU, and runway capacity planning |
-| AI Engine | Prediction, optimization, conflict detection, and recommendation logic |
-| Analytics | Historical trends, delay causes, savings, utilization, and performance dashboards |
-| Weather | Weather risk, visibility, crosswind, runway suitability, and capacity impact |
-| Notification | Live alerts, severity filters, deduplication, escalation, and routing |
-
-## Backend API
-
-Current Django API endpoints:
-
-```text
-GET  /api/test/      Check backend connection
-GET  /api/flights/   Return sample live flight data
-POST /api/predict/   Return sample prediction response
-```
-
-The frontend uses `frontend/src/api.js` to call these endpoints.
-
-## Setup Instructions
-
-### 1. Clone or open the project
+From the project root:
 
 ```bash
 cd "D:\b tech\4 sem\Project Airport\Project"
 ```
 
-### 2. Run the backend
+### 1. Backend setup
 
 ```bash
 cd backend
 python -m venv .venv
 .venv\Scripts\activate
-pip install django djangorestframework django-cors-headers
+pip install -r ..\requirements.txt
 python manage.py migrate
-python manage.py runserver
+python manage.py runserver 127.0.0.1:8000
 ```
 
-Backend will run at:
+Backend URL:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-### 3. Run the frontend
+### 2. Frontend setup
 
-Open a new terminal:
+Open a second terminal:
 
 ```bash
 cd frontend
@@ -150,70 +211,65 @@ npm install
 npm run dev
 ```
 
-Frontend will run at:
+Frontend URL:
 
 ```text
-http://localhost:5173
+http://127.0.0.1:5173
 ```
 
-### 4. Optional frontend API configuration
+### 3. Frontend-to-backend connection
 
-If the frontend is not served through the same origin as the backend, create `frontend/.env`:
+Vite already proxies `/api` requests to:
+
+```text
+http://127.0.0.1:8000
+```
+
+So local development works without extra CORS setup if both servers are running in dev mode.
+
+Optional override:
+
+Create `frontend/.env` only if you want the frontend to call a different backend base URL.
 
 ```env
 VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
 
-Then restart the Vite dev server.
+## Notebook Runtime Notes
 
-## Running AI Notebooks
+- The backend executes notebook code and expects each notebook to define a `payload` variable.
+- Notebook magics such as `%...` and shell lines such as `!...` are skipped by the runtime.
+- pandas, NumPy, timestamps, and DataFrames are converted to JSON-safe values before the API responds.
+- Payloads are cached with `lru_cache` for faster repeated requests.
 
-Open the notebooks from:
+## Verification
 
-```text
-ai_models/notebooks/
-```
+Useful manual checks:
 
-Recommended order:
-
-1. `01_Command_Center.ipynb`
-2. `02_Flight_Operation.ipynb`
-3. `03_Human_Resources.ipynb`
-4. `04_Equipments.ipynb`
-5. `05_Infrastructure.ipynb`
-6. `06_AI_Engine.ipynb`
-7. `07_Analytics.ipynb`
-8. `08_Weather.ipynb`
-9. `09_Notification.ipynb`
-
-Install common notebook dependencies if needed:
+1. Open `http://127.0.0.1:8000/api/test/`
+2. Open `http://127.0.0.1:8000/api/`
+3. Open one module endpoint such as `http://127.0.0.1:8000/api/command-center/`
+4. Run the frontend and confirm the nine pages load backend data
+5. Build the frontend:
 
 ```bash
-pip install notebook pandas numpy matplotlib scikit-learn
-jupyter notebook
+cd frontend
+npm run build
 ```
 
 ## Expected Outcomes
 
-- Reduced aircraft turnaround time
-- Better usage of gates, staff, equipment, and runway capacity
-- Faster response to operational disruptions
-- Improved delay prediction and bottleneck prevention
-- Better communication between airport teams
-- Lower operational cost and improved passenger experience
-
-## Development Notes
-
-- The backend currently uses sample in-memory flight data and SQLite.
-- The notebooks generate synthetic but realistic operational data for AI logic and dashboard payloads.
-- Weather page supports demo data and can be configured with OpenWeatherMap API credentials from the UI.
-- Existing AI notebook outputs can be connected to Django endpoints in a future integration step.
+- Better visibility into airport ground operations
+- Faster identification of conflicts, shortages, and delay drivers
+- Stronger coordination between gates, crews, equipment, and infrastructure
+- More realistic operational dashboards backed by the notebook logic
+- Clearer separation between AI/data generation and frontend presentation
 
 ## Future Scope
 
-- Persist live flight, equipment, staff, and alert data in database models
-- Connect notebook logic to backend APIs
-- Add authentication and role-based dashboards
-- Integrate real airline, weather, and ground handling data feeds
-- Add automated optimization jobs for gate, crew, and equipment assignment
-- Export reports for airport operations managers
+- Persist flights, staff, equipment, and alerts in database models
+- Add authentication and role-based access
+- Support scheduled notebook refresh jobs
+- Connect to live airport, airline, and weather feeds
+- Add write-back workflows for acknowledgements, assignments, and dispatch actions
+- Export reports and operational summaries

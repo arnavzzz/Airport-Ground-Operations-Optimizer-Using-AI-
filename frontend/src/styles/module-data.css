@@ -1,0 +1,331 @@
+.module-page {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px 32px;
+    overflow-y: auto;
+    font-family: "DM Sans", sans-serif;
+}
+
+.module-toolbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.module-toolbar-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.module-summary {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.5;
+}
+
+.module-sync {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.34);
+}
+
+.module-refresh {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.82);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.module-refresh:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.module-refresh:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.module-banner {
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.module-banner-info {
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    color: #bfdbfe;
+}
+
+.module-banner-error {
+    background: rgba(248, 113, 113, 0.12);
+    border: 1px solid rgba(248, 113, 113, 0.28);
+    color: #fecaca;
+}
+
+.module-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+}
+
+.module-metric-card,
+.module-panel,
+.module-kv-item,
+.module-list-item {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.module-metric-card {
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.module-metric-label,
+.module-kv-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.module-metric-value,
+.module-kv-value {
+    font-family: "Syne", sans-serif;
+    font-size: 28px;
+    line-height: 1.05;
+    color: #f8fafc;
+}
+
+.module-metric-hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.module-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.module-grid-two {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.module-panel {
+    border-radius: 18px;
+    padding: 20px 22px;
+}
+
+.module-panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.module-panel-title {
+    margin: 0;
+    font-family: "Syne", sans-serif;
+    font-size: 15px;
+    color: #f8fafc;
+}
+
+.module-panel-subtitle {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.5;
+}
+
+.module-kv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.module-kv-item {
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.module-kv-value {
+    font-size: 18px;
+}
+
+.module-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.module-list-item {
+    border-radius: 14px;
+    padding: 14px 16px;
+}
+
+.module-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.module-list-title {
+    font-size: 14px;
+    color: #f8fafc;
+}
+
+.module-list-body {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.6;
+}
+
+.module-list-meta {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.32);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.module-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tag-default {
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    color: #cbd5e1;
+}
+
+.tag-critical {
+    background: rgba(239, 68, 68, 0.14);
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    color: #fca5a5;
+}
+
+.tag-high {
+    background: rgba(249, 115, 22, 0.14);
+    border: 1px solid rgba(249, 115, 22, 0.28);
+    color: #fdba74;
+}
+
+.tag-medium {
+    background: rgba(251, 191, 36, 0.14);
+    border: 1px solid rgba(251, 191, 36, 0.28);
+    color: #fde68a;
+}
+
+.tag-low {
+    background: rgba(52, 211, 153, 0.14);
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    color: #86efac;
+}
+
+.module-table-wrap {
+    overflow-x: auto;
+}
+
+.module-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+}
+
+.module-table th {
+    padding: 0 0 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.34);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.module-table td {
+    padding: 14px 0;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: top;
+}
+
+.module-table tr:last-child td {
+    border-bottom: none;
+}
+
+.module-empty {
+    padding: 20px 0 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.tone-default {
+    color: #f8fafc;
+}
+
+.tone-critical {
+    color: #fca5a5;
+}
+
+.tone-high {
+    color: #fdba74;
+}
+
+.tone-medium {
+    color: #fde68a;
+}
+
+.tone-low {
+    color: #86efac;
+}
+
+@media (max-width: 720px) {
+    .module-page {
+        padding: 24px 20px;
+    }
+
+    .module-metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .module-panel {
+        padding: 18px;
+    }
+}
