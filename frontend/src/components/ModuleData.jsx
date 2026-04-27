@@ -10,8 +10,9 @@ export function StatusTag({ value, tone }) {
     );
 }
 
-export function ModulePage({ summary, generatedAt, loading, error, onRefresh, children }) {
-    const syncLabel = generatedAt ? `Django sync: ${formatDateTime(generatedAt)}` : "Waiting for Django payload";
+export function ModulePage({ summary, generatedAt, refreshedAt, loading, error, onRefresh, children }) {
+    const syncTime = refreshedAt || generatedAt;
+    const syncLabel = syncTime ? `Django sync: ${formatDateTime(syncTime)}` : "Waiting for Django payload";
 
     return (
         <div className="module-page">

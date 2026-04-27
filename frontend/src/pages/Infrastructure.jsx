@@ -13,13 +13,14 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function Infrastructures() {
-    const { data, loading, error, refresh } = useModuleData(getInfrastructureData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getInfrastructureData);
     const kpis = data?.kpis || {};
 
     return (
         <ModulePage
             summary="Infrastructure assets now render from the Django infrastructure notebook output."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

@@ -14,7 +14,7 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function Notifications() {
-    const { data, loading, error, refresh } = useModuleData(getNotificationsData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getNotificationsData);
     const kpis = data?.kpis || {};
     const severityCounts = data?.severity_counts || {};
     const categoryCounts = data?.category_counts || {};
@@ -23,6 +23,7 @@ export function Notifications() {
         <ModulePage
             summary="Notifications now renders the backend alert feed, escalation state, and deduped KPI counts from Django."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

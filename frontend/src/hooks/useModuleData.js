@@ -4,6 +4,7 @@ export function useModuleData(fetcher) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [refreshedAt, setRefreshedAt] = useState(null);
 
     const load = useCallback(async () => {
         setLoading(true);
@@ -12,6 +13,7 @@ export function useModuleData(fetcher) {
         try {
             const next = await fetcher();
             setData(next);
+            setRefreshedAt(new Date());
         } catch (err) {
             setError(err instanceof Error ? err.message : "Unable to load module data.");
         } finally {
@@ -30,6 +32,7 @@ export function useModuleData(fetcher) {
                 const next = await fetcher();
                 if (mounted) {
                     setData(next);
+                    setRefreshedAt(new Date());
                 }
             } catch (err) {
                 if (mounted) {
@@ -49,5 +52,5 @@ export function useModuleData(fetcher) {
         };
     }, [fetcher]);
 
-    return { data, loading, error, refresh: load };
+    return { data, loading, error, refreshedAt, refresh: load };
 }

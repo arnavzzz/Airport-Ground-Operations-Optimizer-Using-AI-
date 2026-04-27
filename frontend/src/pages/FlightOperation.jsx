@@ -18,13 +18,14 @@ function routeLabel(row) {
 }
 
 export function FlightOperations() {
-    const { data, loading, error, refresh } = useModuleData(getFlightOperationsData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getFlightOperationsData);
     const kpis = data?.kpis || {};
 
     return (
         <ModulePage
             summary="Flight operations is now wired to the Django flight-operations endpoint instead of the local demo feed."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

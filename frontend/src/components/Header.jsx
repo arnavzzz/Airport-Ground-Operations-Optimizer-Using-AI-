@@ -79,7 +79,10 @@ export default function Header({ active, backendStatus }) {
                     <span className="backend-status-dot" />
                     <span>{statusLabel}</span>
                 </div>
-                <div className="header-avatar" title="Airport Ops">AO</div>
+                <div className="header-avatar" title="AA Profile" aria-label="AA profile">
+                    <img src="/profile-picture.png" alt="" aria-hidden="true" />
+                    <span>AA</span>
+                </div>
             </div>
         </header>
     );

@@ -14,13 +14,14 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function AnalyticsPage() {
-    const { data, loading, error, refresh } = useModuleData(getAnalyticsData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getAnalyticsData);
     const kpis = data?.kpis || {};
 
     return (
         <ModulePage
             summary="Analytics is now using the Django analytics endpoint for cost, trend, and delay-cause reporting."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

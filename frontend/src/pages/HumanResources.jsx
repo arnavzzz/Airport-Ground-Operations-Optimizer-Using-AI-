@@ -13,13 +13,14 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function HumanResources() {
-    const { data, loading, error, refresh } = useModuleData(getHumanResourcesData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getHumanResourcesData);
     const kpis = data?.kpis || {};
 
     return (
         <ModulePage
             summary="Human resources now reads staffing, fatigue, assignments, and recommendations from Django."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

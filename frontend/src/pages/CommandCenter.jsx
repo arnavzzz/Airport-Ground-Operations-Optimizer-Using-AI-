@@ -16,7 +16,7 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function CommandCenter() {
-    const { data, loading, error, refresh } = useModuleData(getCommandCenterData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getCommandCenterData);
     const kpis = data?.kpis || {};
     const weather = data?.weather || {};
 
@@ -24,6 +24,7 @@ export function CommandCenter() {
         <ModulePage
             summary="Command center overview fed directly by the Django notebook runtime."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

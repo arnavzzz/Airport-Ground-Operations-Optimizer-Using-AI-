@@ -16,7 +16,7 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function AIEnginePage() {
-    const { data, loading, error, refresh } = useModuleData(getAIEngineData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getAIEngineData);
     const kpis = data?.kpis || {};
     const metrics = data?.model_metrics || {};
 
@@ -24,6 +24,7 @@ export function AIEnginePage() {
         <ModulePage
             summary="AI engine metrics, live predictions, and conflict resolution are now hydrated from Django."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

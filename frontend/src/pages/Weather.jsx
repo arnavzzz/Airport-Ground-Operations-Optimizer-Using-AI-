@@ -15,7 +15,7 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function WeatherPage() {
-    const { data, loading, error, refresh } = useModuleData(getWeatherData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getWeatherData);
     const kpis = data?.kpis || {};
     const airport = data?.airport || {};
     const current = data?.current || {};
@@ -24,6 +24,7 @@ export function WeatherPage() {
         <ModulePage
             summary="Weather has been switched over to the Django weather notebook payload instead of direct browser API calls."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}

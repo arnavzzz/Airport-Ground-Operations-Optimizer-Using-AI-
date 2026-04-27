@@ -13,13 +13,14 @@ import {
 import { useModuleData } from "../hooks/useModuleData";
 
 export function Equipments() {
-    const { data, loading, error, refresh } = useModuleData(getEquipmentsData);
+    const { data, loading, error, refreshedAt, refresh } = useModuleData(getEquipmentsData);
     const kpis = data?.kpis || {};
 
     return (
         <ModulePage
             summary="Equipment inventory, zone coverage, maintenance, and live equipment events now come from Django."
             generatedAt={data?.generated_at}
+            refreshedAt={refreshedAt}
             loading={loading}
             error={error}
             onRefresh={refresh}
