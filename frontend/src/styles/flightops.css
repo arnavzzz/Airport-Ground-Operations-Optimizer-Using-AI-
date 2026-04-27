@@ -38,6 +38,12 @@
     padding: 3px 10px;
     border-radius: 20px;
 }
+.fo-feed-status {
+    color: rgba(255,255,255,0.42);
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
 .fo-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
@@ -90,8 +96,8 @@
 
 /* Content rows */
 .fo-content { display: flex; flex-direction: column; gap: 20px; }
-.fo-row { display: flex; gap: 20px; }
-.fo-row > * { flex: 1; min-width: 0; }
+.fo-content-row { display: flex; gap: 20px; }
+.fo-content-row > * { flex: 1; min-width: 0; }
 
 /* Sections */
 .fo-section {
@@ -152,11 +158,11 @@
     border-bottom: 1px solid rgba(255,255,255,0.07);
     white-space: nowrap;
 }
-.fo-row {
+.fo-flight-row {
     border-bottom: 1px solid rgba(255,255,255,0.04);
     transition: background 0.15s;
 }
-.fo-row:hover { background: rgba(255,255,255,0.04); }
+.fo-flight-row:hover { background: rgba(255,255,255,0.04); }
 .fo-table tbody td {
     padding: 10px 12px;
     color: rgba(255,255,255,0.7);

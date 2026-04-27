@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getLiveFlights } from "../api";
 import "../styles/flightops.css";
 
 const AIRLINES = ["IndiGo", "Air India", "SpiceJet", "Vistara", "GoFirst", "AirAsia"];
@@ -49,6 +50,28 @@ function genFlights(n = 14) {
     });
 }
 
+function normalizeFlight(f, index) {
+    return {
+        ...f,
+        id: f.id || `FL-BE-${index}`,
+        flightId: f.flightId || "N/A",
+        airline: f.airline || "Unknown",
+        status: f.status || "On Time",
+        gate: f.gate || "TBD",
+        assignedGate: f.assignedGate || f.gate || "TBD",
+        scheduledTime: f.scheduledTime || "N/A",
+        actualTime: f.actualTime || f.scheduledTime || "N/A",
+        scheduledDep: f.scheduledDep || "N/A",
+        actualDep: f.actualDep || f.scheduledDep || "N/A",
+        runway: f.runway || "TBD",
+        bay: f.bay || "TBD",
+        turnaround: Number(f.turnaround ?? 0),
+        turnaroundScore: Number(f.turnaroundScore ?? 0),
+        isArrival: Boolean(f.isArrival),
+        delay: Number(f.delay ?? 0),
+    };
+}
+
 function LiveFlightFeed({ flights }) {
     const [filter, setFilter] = useState("All");
     const filters = ["All", "Arrivals", "Departures", "Delayed", "Boarding"];
@@ -78,7 +101,7 @@ function LiveFlightFeed({ flights }) {
                     </tr></thead>
                     <tbody>
                         {filtered.map(f => (
-                            <tr key={f.id} className="fo-row">
+                            <tr key={f.id} className="fo-flight-row">
                                 <td><span className="fo-flight-id">{f.flightId}</span></td>
                                 <td>{f.airline}</td>
                                 <td><span className="fo-badge" style={{"--bclr": STATUS_COLOR[f.status]}}>{f.status}</span></td>
@@ -367,8 +390,31 @@ function AISyncedPanel({ flights }) {
 export function FlightOperations() {
     const [flights, setFlights] = useState(() => genFlights(14));
     const [clock, setClock] = useState(new Date());
+    const [feedStatus, setFeedStatus] = useState("Loading feed...");
 
     useEffect(() => { const t = setInterval(() => setClock(new Date()), 1000); return () => clearInterval(t); }, []);
+    useEffect(() => {
+        let cancelled = false;
+
+        getLiveFlights()
+            .then(data => {
+                if (cancelled) return;
+                const backendFlights = Array.isArray(data.flights) ? data.flights.map(normalizeFlight) : [];
+                if (backendFlights.length > 0) {
+                    setFlights(backendFlights);
+                    setFeedStatus("Django feed connected");
+                } else {
+                    setFeedStatus("Using demo feed");
+                }
+            })
+            .catch(() => {
+                if (!cancelled) setFeedStatus("Using demo feed");
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, []);
     useEffect(() => {
         const t = setInterval(() => {
             setFlights(prev => prev.map(f =>
@@ -393,6 +439,7 @@ export function FlightOperations() {
                 <div className="fo-topbar-left">
                     <h1 className="fo-title">Flight Operations</h1>
                     <span className="fo-live-tag"><span className="fo-dot" />LIVE</span>
+                    <span className="fo-feed-status">{feedStatus}</span>
                 </div>
                 <div className="fo-clock">
                     {pad(clock.getHours())}:{pad(clock.getMinutes())}:{pad(clock.getSeconds())} · {clock.toLocaleDateString("en-IN", {weekday:"short", day:"2-digit", month:"short"})}
@@ -411,12 +458,12 @@ export function FlightOperations() {
             </div>
             <div className="fo-content">
                 <LiveFlightFeed flights={flights} />
-                <div className="fo-row">
+                <div className="fo-content-row">
                     <TurnaroundTimer flights={flights} />
                     <RunwayScheduling flights={flights} />
                 </div>
                 <GateAssignmentMap flights={flights} />
-                <div className="fo-row">
+                <div className="fo-content-row">
                     <ParkingBayAllocation flights={flights} />
                     <FlightInputForm onAdd={addFlight} />
                 </div>

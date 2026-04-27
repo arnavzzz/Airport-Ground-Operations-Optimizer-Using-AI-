@@ -20,6 +20,10 @@ export function checkBackendConnection() {
     return request('/api/test/');
 }
 
+export function getLiveFlights() {
+    return request('/api/flights/');
+}
+
 export function requestPrediction(payload) {
     return request('/api/predict/', {
         method: 'POST',
