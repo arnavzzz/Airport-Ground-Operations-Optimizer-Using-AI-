@@ -4,6 +4,14 @@ env/
 ui-ux_design/
 node_modules/
 vite/
+
+# Local secrets and API keys
 .env
 .env.*
+!.env.example
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+
 dist/

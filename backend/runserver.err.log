@@ -1,0 +1,211 @@
+Watching for file changes with StatReloader
+07_Analytics.ipynb#cell24:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+09_Notification.ipynb#cell22:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:06] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:21:06] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:21:06] "GET /api/notifications/ HTTP/1.1" 200 115634
+[28/Apr/2026 11:21:06] "GET /api/notifications/ HTTP/1.1" 200 115634
+05_Infrastructure.ipynb#cell20:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:06] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:21:06] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+04_Equipments.ipynb#cell24:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:09] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:21:09] "GET /api/equipments/ HTTP/1.1" 200 48344
+02_Flight_Operation.ipynb#cell18:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:09] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:21:09] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:21:10] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:21:10] "GET /api/equipments/ HTTP/1.1" 200 48344
+03_Human_Resources.ipynb#cell22:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:14] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:21:14] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:21:16] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:21:18] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:21:18] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+01_Command_Center.ipynb#cell15:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:19] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:21:19] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:21:21] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:21:21] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+06_AI_Engine.ipynb#cell24:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:21] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:21:21] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:21:22] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:21:22] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+08_Weather.ipynb#cell20:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:21:24] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:24] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:26] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:21:26] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:21:28] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:21:28] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:21:28] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:21:28] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:21:29] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:21:29] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:21:30] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:30] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:31] "GET /api/notifications/ HTTP/1.1" 200 115634
+[28/Apr/2026 11:21:31] "GET /api/notifications/ HTTP/1.1" 200 115634
+[28/Apr/2026 11:21:32] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:32] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:39] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:21:40] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:21:40] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:21:42] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:21:42] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:22:42] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:22:42] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:22:43] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:22:43] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:22:44] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:22:44] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:22:47] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:22:47] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:22:48] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:22:48] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:22:59] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:22:59] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:23:00] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:23:00] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:23:00] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:23:00] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:23:01] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:23:01] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:23:04] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:23:04] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:23:06] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:23:06] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:23:20] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:23:20] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:23:21] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:23:21] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:23:22] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:23:22] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:23:40] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:23:40] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:23:41] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:23:41] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:25:23] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:25:23] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:26:54] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:26:54] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:26:55] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:26:55] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:26:56] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:26:56] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:27:03] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:27:03] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:27:03] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:27:03] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:27:04] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:27:04] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:27:10] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:27:10] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:27:11] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:27:11] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:27:13] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:27:13] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:27:14] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:27:14] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:27:21] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:27:21] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:27:48] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:27:49] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:27:50] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:27:50] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:27:51] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:27:51] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:27:52] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:27:52] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:27:54] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:27:54] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:28:46] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:28:46] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:28:47] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:28:47] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:28:48] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:28:48] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:28:48] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:28:48] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:28:49] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:28:49] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:28:52] "GET /api/notifications/ HTTP/1.1" 200 115634
+[28/Apr/2026 11:28:52] "GET /api/notifications/ HTTP/1.1" 200 115634
+[28/Apr/2026 11:28:53] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:28:53] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:28:54] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:28:54] "GET /api/flight-operations/ HTTP/1.1" 200 26280
+[28/Apr/2026 11:28:55] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:28:55] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:28:55] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:28:55] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:28:57] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:28:57] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:32:24] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:32:24] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:32:25] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:32:25] "GET /api/ai-engine/ HTTP/1.1" 200 40890
+[28/Apr/2026 11:32:26] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:32:26] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:32:27] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:32:27] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:33:01] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:33:03] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:33:04] "GET /api/weather/ HTTP/1.1" 200 19225
+[28/Apr/2026 11:33:05] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:33:05] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:33:07] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:33:07] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:33:08] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:33:08] "GET /api/human-resources/ HTTP/1.1" 200 94315
+D:\b tech\4 sem\Project Airport\Project\backend\api\notebook_services\weather.py changed, reloading.
+Exception ignored in atexit callback <bound method Gcf.destroy_all of <class 'matplotlib._pylab_helpers.Gcf'>>:
+Traceback (most recent call last):
+  File "D:\b tech\4 sem\Project Airport\Project\env\Lib\site-packages\matplotlib\_pylab_helpers.py", line 81, in destroy_all
+    manager.destroy()
+  File "D:\b tech\4 sem\Project Airport\Project\env\Lib\site-packages\matplotlib\backends\_backend_tk.py", line 618, in destroy
+    self._window_dpi.trace_remove('write', self._window_dpi_cbname)
+  File "C:\Users\ncr\AppData\Local\Programs\Python\Python313\Lib\tkinter\__init__.py", line 474, in trace_remove
+    self._tk.call('trace', 'remove', 'variable',
+RuntimeError: main thread is not in main loop
+Watching for file changes with StatReloader
+07_Analytics.ipynb#cell24:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:35:11] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:35:11] "GET /api/analytics/ HTTP/1.1" 200 14307
+08_Weather.ipynb#cell20:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:35:14] "GET /api/weather/ HTTP/1.1" 200 19301
+03_Human_Resources.ipynb#cell22:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+01_Command_Center.ipynb#cell15:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:35:15] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:35:15] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:35:16] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:35:16] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:35:16] "GET /api/weather/ HTTP/1.1" 200 19301
+[28/Apr/2026 11:35:16] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:35:16] "GET /api/human-resources/ HTTP/1.1" 200 94315
+04_Equipments.ipynb#cell24:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+05_Infrastructure.ipynb#cell20:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:35:19] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:35:19] "GET /api/equipments/ HTTP/1.1" 200 48344
+[28/Apr/2026 11:35:20] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:35:20] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:35:20] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:35:20] "GET /api/human-resources/ HTTP/1.1" 200 94315
+06_AI_Engine.ipynb#cell24:1: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+[28/Apr/2026 11:35:21] "GET /api/ai-engine/ HTTP/1.1" 200 43930
+[28/Apr/2026 11:35:21] "GET /api/ai-engine/ HTTP/1.1" 200 43930
+[28/Apr/2026 11:35:23] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:35:23] "GET /api/infrastructure/ HTTP/1.1" 200 39314
+[28/Apr/2026 11:35:25] "GET /api/ai-engine/ HTTP/1.1" 200 43930
+[28/Apr/2026 11:35:25] "GET /api/ai-engine/ HTTP/1.1" 200 43930
+[28/Apr/2026 11:35:26] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:35:26] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:35:27] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:35:27] "GET /api/analytics/ HTTP/1.1" 200 14307
+[28/Apr/2026 11:36:31] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:36:31] "GET /api/test/ HTTP/1.1" 200 209
+[28/Apr/2026 11:36:31] "GET /api/command-center/ HTTP/1.1" 200 5577
+[28/Apr/2026 11:36:31] "GET /api/test/ HTTP/1.1" 200 209
+[28/Apr/2026 11:36:40] "GET /api/human-resources/ HTTP/1.1" 200 94315
+[28/Apr/2026 11:36:40] "GET /api/human-resources/ HTTP/1.1" 200 94315
