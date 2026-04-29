@@ -31,7 +31,12 @@ def _env_list(name, default):
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-FRONTEND_DIST_DIR = BASE_DIR.parent / "frontend" / "dist"
+FRONTEND_DIST_DIRS = [
+    BASE_DIR / "frontend_dist",
+    BASE_DIR.parent / "frontend" / "dist",
+    BASE_DIR / "frontend" / "dist",
+]
+FRONTEND_DIST_DIR = FRONTEND_DIST_DIRS[0]
 
 
 # Quick-start development settings - unsuitable for production

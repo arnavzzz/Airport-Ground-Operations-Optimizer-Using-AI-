@@ -12,5 +12,13 @@ if [ ! -f frontend/dist/index.html ]; then
   exit 1
 fi
 
+mkdir -p backend/frontend_dist
+cp -R frontend/dist/. backend/frontend_dist/
+
+if [ ! -f backend/frontend_dist/index.html ]; then
+  echo "React build copy failed: backend/frontend_dist/index.html was not created." >&2
+  exit 1
+fi
+
 python backend/manage.py collectstatic --noinput
 python backend/manage.py migrate
