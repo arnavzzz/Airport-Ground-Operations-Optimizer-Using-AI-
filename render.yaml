@@ -1,0 +1,33 @@
+services:
+  - type: web
+    runtime: python
+    name: groundflow-airport
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: gunicorn --chdir backend backend.wsgi:application --bind 0.0.0.0:$PORT
+    healthCheckPath: /api/test/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.11
+      - key: NODE_VERSION
+        value: 24.14.1
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: WEB_CONCURRENCY
+        value: "2"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: groundflow-airport-db
+          property: connectionString
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: OPENWEATHER_TIMEOUT_SECONDS
+        value: "2"
+
+databases:
+  - name: groundflow-airport-db
+    plan: free
+    databaseName: groundflow_airport
+    user: groundflow_airport

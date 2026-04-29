@@ -184,6 +184,36 @@ From the project root:
 cd "D:\b tech\4 sem\Project Airport\Project"
 ```
 
+## Render Hosting
+
+This repo includes a `render.yaml` Blueprint for hosting the React build and Django API as one Render web service.
+
+Recommended branch for Render:
+
+```text
+codex-render-host
+```
+
+Render settings if you create the web service manually instead of using the Blueprint:
+
+```text
+Runtime: Python 3
+Build Command: bash build.sh
+Start Command: gunicorn --chdir backend backend.wsgi:application --bind 0.0.0.0:$PORT
+Health Check Path: /api/test/
+```
+
+Required environment variables:
+
+```text
+SECRET_KEY=<generate in Render>
+DEBUG=False
+DATABASE_URL=<Render Postgres internal connection string>
+OPENWEATHER_API_KEY=<optional>
+```
+
+The React app uses relative `/api/...` requests, so the hosted frontend and Django API stay connected on the same Render domain.
+
 ### 1. Backend setup
 
 ```bash
