@@ -15,6 +15,19 @@ MPS_TO_KT = 1.94384449
 _ENV_LOADED = False
 
 
+def _notebook_fallback(payload, status, reason=None):
+    source = {
+        "provider": "notebook",
+        "status": status,
+    }
+    if reason:
+        source["reason"] = reason
+    return {
+        **payload,
+        "weather_source": source,
+    }
+
+
 def _load_local_env():
     global _ENV_LOADED
     if _ENV_LOADED:
@@ -171,6 +184,17 @@ def _fetch_openweather(api_key, lat, lon, timeout):
         return json.loads(response.read().decode("utf-8"))
 
 
+def _has_openweather_data(raw):
+    if not isinstance(raw, dict):
+        return False
+    status_code = raw.get("cod")
+    if status_code is not None and str(status_code) != "200":
+        return False
+    weather = raw.get("weather")
+    main = raw.get("main")
+    return bool(weather and isinstance(weather, list) and isinstance(main, dict) and main.get("temp") is not None)
+
+
 def _openweather_current(raw, fallback_current):
     weather = (raw.get("weather") or [{}])[0]
     main = raw.get("main") or {}
@@ -275,23 +299,17 @@ def get_weather_payload():
     lon = _env_float("OPENWEATHER_LON") or airport.get("lon")
 
     if not api_key or lat is None or lon is None:
-        return {
-            **payload,
-            "weather_source": {
-                "provider": "notebook",
-                "status": "missing_openweather_config",
-            },
-        }
+        return _notebook_fallback(payload, "missing_openweather_config")
 
     try:
         raw = _fetch_openweather(api_key, lat, lon, _env_timeout())
     except (HTTPError, TimeoutError, URLError, OSError, ValueError):
-        return {
-            **payload,
-            "weather_source": {
-                "provider": "notebook",
-                "status": "openweather_unavailable",
-            },
-        }
+        return _notebook_fallback(payload, "openweather_unavailable")
 
-    return _merge_openweather_payload(payload, raw, lat, lon)
+    if not _has_openweather_data(raw):
+        return _notebook_fallback(payload, "openweather_empty")
+
+    try:
+        return _merge_openweather_payload(payload, raw, lat, lon)
+    except (KeyError, TypeError, ValueError) as exc:
+        return _notebook_fallback(payload, "openweather_invalid_payload", str(exc))

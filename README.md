@@ -219,13 +219,36 @@ http://127.0.0.1:5173
 
 ### 3. Frontend-to-backend connection
 
-Vite already proxies `/api` requests to:
+The React app calls Django with relative `/api/...` URLs. In local development, Vite proxies those requests to:
 
 ```text
 http://127.0.0.1:8000
 ```
 
 So local development works without extra CORS setup if both servers are running in dev mode.
+
+To start both servers from the frontend folder:
+
+```bash
+npm run dev:full
+```
+
+The built frontend can also be served directly by Django:
+
+```bash
+cd frontend
+npm run build
+cd ..\backend
+python manage.py runserver 127.0.0.1:8000
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/
+```
+
+This keeps the project connected to Django even when the Vite dev server is closed.
 
 Optional override:
 

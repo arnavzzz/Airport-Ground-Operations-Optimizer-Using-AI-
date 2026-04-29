@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+const API_BASE_URL = configuredApiBaseUrl ? configuredApiBaseUrl.replace(/\/$/, "") : "";
 
 const MODULE_ENDPOINTS = {
     "command-center": "/api/command-center/",
@@ -13,12 +14,13 @@ const MODULE_ENDPOINTS = {
 };
 
 async function request(path, options = {}) {
+    const { headers, ...requestOptions } = options;
     const response = await fetch(`${API_BASE_URL}${path}`, {
+        ...requestOptions,
         headers: {
             "Content-Type": "application/json",
-            ...options.headers,
+            ...headers,
         },
-        ...options,
     });
 
     let body = null;
