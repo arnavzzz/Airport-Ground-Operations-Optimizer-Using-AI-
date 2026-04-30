@@ -152,6 +152,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = _env_list(
     [
         r"^http://localhost:\d+$",
         r"^http://127\.0\.0\.1:\d+$",
+        r"^https://[a-z0-9-]+\.netlify\.app$",
     ],
 )
 

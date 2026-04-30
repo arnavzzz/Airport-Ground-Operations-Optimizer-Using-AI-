@@ -184,6 +184,44 @@ From the project root:
 cd "D:\b tech\4 sem\Project Airport\Project"
 ```
 
+## Netlify Frontend Hosting
+
+This repo now includes `netlify.toml` for deploying the React dashboard to Netlify.
+
+Netlify hosts the frontend only. Keep the Django API on Render or another Python web host, then point the Netlify build at that backend.
+
+Netlify settings:
+
+```text
+Base directory: frontend
+Build command: npm run build
+Publish directory: dist
+```
+
+Required Netlify environment variable:
+
+```text
+VITE_API_BASE_URL=https://your-django-backend.example.com
+```
+
+If your backend is hosted on Render, the value will look like:
+
+```text
+VITE_API_BASE_URL=https://your-render-service.onrender.com
+```
+
+The included Netlify redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment. The Django backend allows Netlify app URLs through CORS by default with:
+
+```text
+CORS_ALLOWED_ORIGIN_REGEXES=^http://localhost:\d+$,^http://127\.0\.0\.1:\d+$,^https://[a-z0-9-]+\.netlify\.app$
+```
+
+For a custom Netlify domain, add it to the backend environment:
+
+```text
+CORS_ALLOWED_ORIGINS=https://your-custom-domain.com
+```
+
 ## Render Hosting
 
 This repo includes a `render.yaml` Blueprint for hosting the React build and Django API as one Render web service.
