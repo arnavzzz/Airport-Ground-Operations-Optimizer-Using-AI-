@@ -199,7 +199,7 @@ In other words, Netlify can host both sides of this app only because the deploye
 Netlify settings:
 
 ```text
-Site name: airportoptai
+Site URL: https://resonant-kringle-7c5290.netlify.app/
 Base directory: project root
 Build command: python scripts/export_static_api.py && npm --prefix frontend ci --include=dev && npm --prefix frontend run build
 Publish directory: frontend/dist
@@ -219,55 +219,19 @@ The included Netlify config rewrites frontend API requests to the static JSON fi
 /api/test/ -> /api/test.json
 ```
 
-The included Netlify fallback redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment. The Django backend also allows Netlify app URLs through CORS by default with:
+The included Netlify fallback redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment:
 
 ```text
-CORS_ALLOWED_ORIGIN_REGEXES=^http://localhost:\d+$,^http://127\.0\.0\.1:\d+$,^https://[a-z0-9-]+\.netlify\.app$
+/* -> /index.html
 ```
 
-For a custom Netlify domain, add it to the backend environment:
-
-```text
-CORS_ALLOWED_ORIGINS=https://your-custom-domain.com
-```
-
-Optional live Django override:
+Optional live Django override for development or future backend hosting:
 
 ```text
 VITE_API_BASE_URL=https://your-django-backend.example.com
 ```
 
 Set this in Netlify only if you want the browser to call a live Django backend directly instead of using the prebuilt static API files.
-
-## Render Hosting
-
-This repo still includes a `render.yaml` Blueprint for hosting the React build and Django API as one live Render web service.
-
-Recommended branch for Render:
-
-```text
-codex-render-host
-```
-
-Render settings if you create the web service manually instead of using the Blueprint:
-
-```text
-Runtime: Python 3
-Build Command: bash build.sh
-Start Command: gunicorn --chdir backend backend.wsgi:application --bind 0.0.0.0:$PORT
-Health Check Path: /api/test/
-```
-
-Required environment variables:
-
-```text
-SECRET_KEY=<generate in Render>
-DEBUG=False
-DATABASE_URL=<Render Postgres internal connection string>
-OPENWEATHER_API_KEY=<optional>
-```
-
-The React app uses relative `/api/...` requests, so the hosted frontend and Django API stay connected on the same Render domain.
 
 ### 1. Backend setup
 
