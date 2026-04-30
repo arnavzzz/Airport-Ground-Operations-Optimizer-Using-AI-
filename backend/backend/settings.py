@@ -29,6 +29,14 @@ def _env_list(name, default):
         return list(default)
     return [item.strip() for item in value.split(",") if item.strip()]
 
+
+def _normalize_origin(origin):
+    return origin.strip().rstrip("/")
+
+
+def _env_origin_list(name, default):
+    return [_normalize_origin(origin) for origin in _env_list(name, default)]
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIST_DIRS = [
@@ -50,6 +58,7 @@ SECRET_KEY = os.environ.get(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+NETLIFY_SITE_URL = _normalize_origin(os.environ.get("NETLIFY_SITE_URL", "https://airportoptai.netlify.app/"))
 DEBUG = _env_bool("DEBUG", default=not bool(RENDER_EXTERNAL_HOSTNAME))
 
 ALLOWED_HOSTS = _env_list("ALLOWED_HOSTS", ["localhost", "127.0.0.1", ".onrender.com"])
@@ -140,11 +149,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CORS_ALLOWED_ORIGINS = _env_list(
+CORS_ALLOWED_ORIGINS = _env_origin_list(
     "CORS_ALLOWED_ORIGINS",
     [
         'http://localhost:5173',
         'http://127.0.0.1:5173',
+        NETLIFY_SITE_URL,
     ],
 )
 CORS_ALLOWED_ORIGIN_REGEXES = _env_list(
@@ -156,7 +166,7 @@ CORS_ALLOWED_ORIGIN_REGEXES = _env_list(
     ],
 )
 
-CSRF_TRUSTED_ORIGINS = _env_list("CSRF_TRUSTED_ORIGINS", [])
+CSRF_TRUSTED_ORIGINS = _env_origin_list("CSRF_TRUSTED_ORIGINS", [NETLIFY_SITE_URL])
 if RENDER_EXTERNAL_HOSTNAME:
     render_origin = f"https://{RENDER_EXTERNAL_HOSTNAME}"
     if render_origin not in CORS_ALLOWED_ORIGINS:

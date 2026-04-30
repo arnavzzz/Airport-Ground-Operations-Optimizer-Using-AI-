@@ -193,9 +193,22 @@ Netlify hosts the React frontend only. Django must stay on Render or another Pyt
 Netlify settings:
 
 ```text
+Site name: airportoptai
 Base directory: frontend
 Build command: npm run build
 Publish directory: dist
+```
+
+After deployment, the React dashboard URL should be:
+
+```text
+https://airportoptai.netlify.app/
+```
+
+Use that same URL for the backend environment variable:
+
+```text
+NETLIFY_SITE_URL=https://airportoptai.netlify.app/
 ```
 
 The included Netlify config proxies frontend API requests:
