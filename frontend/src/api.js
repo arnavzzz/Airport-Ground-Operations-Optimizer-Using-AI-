@@ -1,5 +1,27 @@
 const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
-const API_BASE_URL = configuredApiBaseUrl ? configuredApiBaseUrl.replace(/\/$/, "") : "";
+const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
+
+function resolveApiBaseUrl() {
+    if (configuredApiBaseUrl) {
+        return configuredApiBaseUrl.replace(/\/$/, "");
+    }
+
+    if (typeof window === "undefined") {
+        return "";
+    }
+
+    const { protocol, hostname, port } = window.location;
+    const localHosts = new Set(["", "localhost", "127.0.0.1", "::1", "[::1]"]);
+    const isLocalPage = localHosts.has(hostname);
+
+    if (protocol === "file:" || (isLocalPage && port !== "8000")) {
+        return LOCAL_API_BASE_URL;
+    }
+
+    return "";
+}
+
+const API_BASE_URL = resolveApiBaseUrl();
 
 const MODULE_ENDPOINTS = {
     "command-center": "/api/command-center/",

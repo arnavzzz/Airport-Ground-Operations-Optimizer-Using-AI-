@@ -147,6 +147,13 @@ CORS_ALLOWED_ORIGINS = _env_list(
         'http://127.0.0.1:5173',
     ],
 )
+CORS_ALLOWED_ORIGIN_REGEXES = _env_list(
+    "CORS_ALLOWED_ORIGIN_REGEXES",
+    [
+        r"^http://localhost:\d+$",
+        r"^http://127\.0\.0\.1:\d+$",
+    ],
+)
 
 CSRF_TRUSTED_ORIGINS = _env_list("CSRF_TRUSTED_ORIGINS", [])
 if RENDER_EXTERNAL_HOSTNAME:

@@ -5,8 +5,12 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
+import matplotlib
 import numpy as np
 import pandas as pd
+
+
+matplotlib.use("Agg", force=True)
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]

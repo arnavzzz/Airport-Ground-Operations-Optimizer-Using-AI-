@@ -51,6 +51,7 @@ function Repair-ProcessPath {
 }
 
 Repair-ProcessPath
+$env:MPLBACKEND = "Agg"
 
 if (-not (Test-Path $PythonExe)) {
     Write-StartupLog "Backend not started: Python executable was not found at $PythonExe"

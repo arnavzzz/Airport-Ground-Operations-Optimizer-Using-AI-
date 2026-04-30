@@ -263,6 +263,14 @@ To start both servers from the frontend folder:
 npm run dev:full
 ```
 
+To make the localhost app start again after Windows restarts and you log in:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\install-localhost-startup.ps1
+```
+
+Localhost services only run while the computer is on and the Windows user is logged in. The startup task above restarts Django on `http://127.0.0.1:8000` and Vite on `http://127.0.0.1:5173` after login.
+
 The built frontend can also be served directly by Django:
 
 ```bash
