@@ -198,19 +198,15 @@ Build command: npm run build
 Publish directory: dist
 ```
 
-Required Netlify environment variable:
+The included Netlify config proxies frontend API requests:
 
 ```text
-VITE_API_BASE_URL=https://your-django-backend.example.com
+/api/* -> https://groundflow-airport.onrender.com/api/*
 ```
 
-If your backend is hosted on Render, the value will look like:
+If your Django backend is deployed with a different URL, update the `/api/*` redirect in `netlify.toml`.
 
-```text
-VITE_API_BASE_URL=https://your-render-service.onrender.com
-```
-
-The included Netlify redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment. The Django backend allows Netlify app URLs through CORS by default with:
+The included Netlify fallback redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment. The Django backend also allows Netlify app URLs through CORS by default with:
 
 ```text
 CORS_ALLOWED_ORIGIN_REGEXES=^http://localhost:\d+$,^http://127\.0\.0\.1:\d+$,^https://[a-z0-9-]+\.netlify\.app$
@@ -221,6 +217,14 @@ For a custom Netlify domain, add it to the backend environment:
 ```text
 CORS_ALLOWED_ORIGINS=https://your-custom-domain.com
 ```
+
+Optional direct API override:
+
+```text
+VITE_API_BASE_URL=https://your-django-backend.example.com
+```
+
+Set this in Netlify only if you want the browser to call the Django backend directly instead of using the `/api/*` proxy.
 
 ## Render Hosting
 
