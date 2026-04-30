@@ -1,6 +1,6 @@
 const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
 const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
-
+//testing comment
 function resolveApiBaseUrl() {
     if (configuredApiBaseUrl) {
         return configuredApiBaseUrl.replace(/\/$/, "");
