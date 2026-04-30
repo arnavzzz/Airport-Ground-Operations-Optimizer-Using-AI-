@@ -188,7 +188,7 @@ cd "D:\b tech\4 sem\Project Airport\Project"
 
 This repo now includes `netlify.toml` for deploying the React dashboard to Netlify.
 
-Netlify hosts the frontend only. Keep the Django API on Render or another Python web host, then point the Netlify build at that backend.
+Netlify hosts the React frontend only. Django must stay on Render or another Python web host because Netlify Functions run JavaScript, TypeScript, or Go serverless code, not a normal Django server.
 
 Netlify settings:
 
@@ -204,7 +204,7 @@ The included Netlify config proxies frontend API requests:
 /api/* -> https://groundflow-airport.onrender.com/api/*
 ```
 
-If your Django backend is deployed with a different URL, update the `/api/*` redirect in `netlify.toml`.
+If your Django backend is deployed with a different URL, update the `/api/*` redirect in both `netlify.toml` and `frontend/public/_redirects`.
 
 The included Netlify fallback redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment. The Django backend also allows Netlify app URLs through CORS by default with:
 
