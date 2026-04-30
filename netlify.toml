@@ -1,14 +1,32 @@
 [build]
-  base = "frontend"
-  command = "npm run build"
-  publish = "dist"
+  command = "python scripts/export_static_api.py && npm --prefix frontend ci --include=dev && npm --prefix frontend run build"
+  publish = "frontend/dist"
 
 [build.environment]
   NODE_VERSION = "24.14.1"
+  PYTHON_VERSION = "3.12.11"
 
 [[redirects]]
-  from = "/api/*"
-  to = "https://groundflow-airport.onrender.com/api/:splat"
+  from = "/api"
+  to = "/api/index.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/"
+  to = "/api/index.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/:endpoint"
+  to = "/api/:endpoint.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/:endpoint/"
+  to = "/api/:endpoint.json"
   status = 200
   force = true
 

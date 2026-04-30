@@ -184,19 +184,25 @@ From the project root:
 cd "D:\b tech\4 sem\Project Airport\Project"
 ```
 
-## Netlify Frontend Hosting
+## Netlify Hosting
 
-This repo now includes `netlify.toml` for deploying the React dashboard to Netlify.
+This repo now includes `netlify.toml` for deploying the whole user-facing app to Netlify.
 
-Netlify hosts the React frontend only. Django must stay on Render or another Python web host because Netlify Functions run JavaScript, TypeScript, or Go serverless code, not a normal Django server.
+Important limitation:
+
+- Netlify standard hosting can run Python during the build, but it does not run a normal long-lived Django server at request time.
+- Netlify Functions currently support JavaScript, TypeScript, and Go, not a standard Django runtime.
+- Because this project's APIs are read-only notebook payloads, the Netlify deploy works by prebuilding those API responses into static JSON files during the build.
+
+In other words, Netlify can host both sides of this app only because the deployed API is static build output, not a live Django process.
 
 Netlify settings:
 
 ```text
 Site name: airportoptai
-Base directory: frontend
-Build command: npm run build
-Publish directory: dist
+Base directory: project root
+Build command: python scripts/export_static_api.py && npm --prefix frontend ci --include=dev && npm --prefix frontend run build
+Publish directory: frontend/dist
 ```
 
 After deployment, the React dashboard URL should be:
@@ -205,19 +211,13 @@ After deployment, the React dashboard URL should be:
 https://airportoptai.netlify.app/
 ```
 
-Use that same URL for the backend environment variable:
+The included Netlify config rewrites frontend API requests to the static JSON files generated at build time:
 
 ```text
-NETLIFY_SITE_URL=https://airportoptai.netlify.app/
+/api/command-center/ -> /api/command-center.json
+/api/weather/ -> /api/weather.json
+/api/test/ -> /api/test.json
 ```
-
-The included Netlify config proxies frontend API requests:
-
-```text
-/api/* -> https://groundflow-airport.onrender.com/api/*
-```
-
-If your Django backend is deployed with a different URL, update the `/api/*` redirect in both `netlify.toml` and `frontend/public/_redirects`.
 
 The included Netlify fallback redirect sends all frontend routes back to `index.html`, so refreshing the dashboard works after deployment. The Django backend also allows Netlify app URLs through CORS by default with:
 
@@ -231,17 +231,17 @@ For a custom Netlify domain, add it to the backend environment:
 CORS_ALLOWED_ORIGINS=https://your-custom-domain.com
 ```
 
-Optional direct API override:
+Optional live Django override:
 
 ```text
 VITE_API_BASE_URL=https://your-django-backend.example.com
 ```
 
-Set this in Netlify only if you want the browser to call the Django backend directly instead of using the `/api/*` proxy.
+Set this in Netlify only if you want the browser to call a live Django backend directly instead of using the prebuilt static API files.
 
 ## Render Hosting
 
-This repo includes a `render.yaml` Blueprint for hosting the React build and Django API as one Render web service.
+This repo still includes a `render.yaml` Blueprint for hosting the React build and Django API as one live Render web service.
 
 Recommended branch for Render:
 
@@ -349,6 +349,21 @@ Create `frontend/.env` only if you want the frontend to call a different backend
 
 ```env
 VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+## Static API Export
+
+The Netlify deployment depends on a build-time export step:
+
+- `scripts/export_static_api.py` imports the Django notebook service layer
+- It executes the 9 notebook-backed payload generators
+- It writes JSON files into `frontend/public/api/`
+- Netlify rewrites `/api/.../` requests to those generated JSON files
+
+Generate them locally with:
+
+```bash
+python scripts/export_static_api.py
 ```
 
 ## Notebook Runtime Notes

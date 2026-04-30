@@ -16,3 +16,4 @@ frontend/.env.*
 
 runtime_logs/
 dist/
+frontend/public/api/

@@ -1,2 +1,5 @@
-/api/*  https://groundflow-airport.onrender.com/api/:splat  200!
+/api  /api/index.json  200!
+/api/  /api/index.json  200!
+/api/:endpoint  /api/:endpoint.json  200!
+/api/:endpoint/  /api/:endpoint.json  200!
 /*  /index.html  200

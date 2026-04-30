@@ -1,5 +1,6 @@
 const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
 const LOCAL_API_BASE_URL = "http://127.0.0.1:8000";
+const LOCAL_HOSTS = new Set(["", "localhost", "127.0.0.1", "::1", "[::1]"]);
 
 function resolveApiBaseUrl() {
     if (configuredApiBaseUrl) {
@@ -11,8 +12,7 @@ function resolveApiBaseUrl() {
     }
 
     const { protocol, hostname, port } = window.location;
-    const localHosts = new Set(["", "localhost", "127.0.0.1", "::1", "[::1]"]);
-    const isLocalPage = localHosts.has(hostname);
+    const isLocalPage = LOCAL_HOSTS.has(hostname);
 
     if (protocol === "file:" || (isLocalPage && port !== "8000")) {
         return LOCAL_API_BASE_URL;
@@ -22,6 +22,16 @@ function resolveApiBaseUrl() {
 }
 
 const API_BASE_URL = resolveApiBaseUrl();
+
+function isStaticApiDeployment() {
+    if (configuredApiBaseUrl || typeof window === "undefined") {
+        return false;
+    }
+
+    const { protocol, hostname, port } = window.location;
+    const isLocalPage = LOCAL_HOSTS.has(hostname);
+    return protocol !== "file:" && !isLocalPage && !port;
+}
 
 const MODULE_ENDPOINTS = {
     "command-center": "/api/command-center/",
@@ -96,6 +106,16 @@ export async function getLiveFlights() {
 }
 
 export async function requestPrediction(payload) {
+    if (isStaticApiDeployment()) {
+        const data = await getAIEngineData();
+        return {
+            status: "ok",
+            module: "ai-engine",
+            received: payload,
+            data,
+        };
+    }
+
     const response = await request("/api/predict/", {
         method: "POST",
         body: JSON.stringify(payload),
