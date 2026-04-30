@@ -208,7 +208,7 @@ Publish directory: frontend/dist
 After deployment, the React dashboard URL should be:
 
 ```text
-https://airportoptai.netlify.app/
+https://resonant-kringle-7c5290.netlify.app/
 ```
 
 The included Netlify config rewrites frontend API requests to the static JSON files generated at build time:
